@@ -62,7 +62,7 @@ function Trips({currentUser}) {
                 return (
                     <tr key={crypto.randomUUID()}>
                     
-                    <td> <Link to={'/api/trips/' + t.id}>{t.name}</Link></td>
+                    <td> <Link to={'/trips/' + t.id}>{t.name}</Link></td>
                     <td> {t.startposition} </td>
                     <td> {t.guide.firstname + ' ' + t.guide.lastname} </td>
                     <td> {t.starttime} </td>

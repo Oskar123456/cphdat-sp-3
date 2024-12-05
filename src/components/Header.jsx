@@ -16,7 +16,7 @@ function Header({currentUser, setCurrentUser}) {
             (<div><p>{currentUser.username} ({currentUser.roles})</p>
              <Logout setCurrentUser={setCurrentUser}/></div>) 
             :
-            (<Link to='/login'>log ind</Link>)
+            (<Link to='/login'>log ind!</Link>)
         }
         </div>
     )

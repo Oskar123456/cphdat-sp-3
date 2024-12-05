@@ -31,7 +31,7 @@ function Guides({currentUser}) {
     }
 
     useEffect(() => {
-        fetchWithJwt("http://localhost:9999/api/guides", initGuides);
+        fetchWithJwt("http://157.245.73.150:9999/api/guides", initGuides);
     }, [])
 
     return (

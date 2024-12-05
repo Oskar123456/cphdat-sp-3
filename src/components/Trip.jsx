@@ -9,7 +9,7 @@ function Trip({currentUser}) {
     let { "*": splat } = useParams();
 
     useEffect(() => {
-        fetchWithJwt("http://localhost:9999/api/trips/" + splat, setTrip, setError);
+        fetchWithJwt("http://157.245.73.150:9999/api/trips" + splat, setTrip, setError);
     }, [])
 
     return (

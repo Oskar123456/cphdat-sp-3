@@ -31,7 +31,7 @@ function Guides({currentUser}) {
     }
 
     useEffect(() => {
-        fetchWithJwt("https://157.245.73.150:9999/api/guides", initGuides);
+        fetchWithJwt("https://exam.obhnothing.dk/api/guides", initGuides);
     }, [])
 
     return (

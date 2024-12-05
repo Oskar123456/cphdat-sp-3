@@ -8,7 +8,7 @@ let logged_in = false;
 
 function login(uname, upassword, uset) 
 {
-    fetch("http://localhost:9999/api/auth/login", {
+    fetch("https://exam.obhnothing.dk/api/auth/login", {
         method: "POST",
         headers: {
             'Accept': 'application/json',

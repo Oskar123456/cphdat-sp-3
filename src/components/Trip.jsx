@@ -9,7 +9,7 @@ function Trip({currentUser}) {
     let { "*": splat } = useParams();
 
     useEffect(() => {
-        fetchWithJwt("https://exam.obhnothing.dk/api/trips" + splat, setTrip, setError);
+        fetchWithJwt("https://exam.obhnothing.dk/api/trips/" + splat, setTrip, setError);
     }, [])
 
     return (

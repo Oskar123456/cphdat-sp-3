@@ -32,7 +32,7 @@ function Trips({currentUser}) {
 
     useEffect(() => {
         console.log('Trips');
-        fetchWithJwt("http://127.0.0.1:9999/api/trips", initTrips);
+        fetchWithJwt("http://157.245.73.150:9999/api/trips", initTrips);
     }, [])
 
     return (

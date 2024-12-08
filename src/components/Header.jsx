@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import { NavLink, Link } from "react-router";
 
-import Logo from '/images/logo.jpg'
+import Logo from '/images/logo.png'
 
 import Logout from './Logout.jsx'
 

@@ -7,8 +7,8 @@ function Home() {
 
     return (
         <div className="article">
-          <h1>article</h1>
-          <p></p>
+          <h1>Trips API</h1>
+          <p>A simple travel API free to use</p>
         </div>
     ) 
 }

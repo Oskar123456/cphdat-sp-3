@@ -12,6 +12,7 @@ import AdminTest from './components/AdminTest.jsx'
 import Trips from './components/Trips.jsx'
 import Trip from './components/Trip.jsx'
 import Guides from './components/Guides.jsx'
+import ApiDocs from './components/ApiDocs.jsx'
 
 function App() 
 {
@@ -25,6 +26,7 @@ function App()
             <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
             <Route path="/admintest" element={<AdminTest currentUser={currentUser}  />} />
             <Route path="/usertest" element={<UserTest currentUser={currentUser}  />} />
+            <Route path="/apidocs" element={<ApiDocs currentUser={currentUser}  />} />
             <Route path="/trips" element={<Trips currentUser={currentUser}  />} />
             <Route path="/trips/*" element={<Trip currentUser={currentUser}  />} />
             <Route path="/guides" element={<Guides currentUser={currentUser}  />} />

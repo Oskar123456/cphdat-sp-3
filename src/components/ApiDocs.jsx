@@ -52,7 +52,7 @@ function ApiDocs({currentUser})
     return (
         <div className="trips_table">
         <h1>API Doc</h1>
-        <a href="exam.obhnothing.dk/api/routes">Api Link</a>
+        <a href="https://exam.obhnothing.dk/api/routes">Api Link</a>
 
         <table>
         <thead>

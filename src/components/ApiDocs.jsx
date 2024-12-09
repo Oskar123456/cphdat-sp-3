@@ -1,7 +1,24 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router";
 import { Outlet } from "react-router";
-import { fetchWithJwt } from '../js/Accounts.js'
+import { fetchWithJwt } from '../js/Accounts.js';
+import { styled } from 'styled-components';
+
+const JsonObject = styled.div`
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    background-color: #464646;
+    border-radius: 1rem;
+    padding: 1rem;
+`;
+
+const JsonField = styled.div`
+    text-indent: 1rem;
+`;
 
 function ApiDocs({currentUser}) 
 {
@@ -88,6 +105,16 @@ function ApiDocs({currentUser})
         
         </tbody>
         </table>
+
+        <h3>error format</h3>
+        <JsonObject>
+        <p>&#123;</p>
+        <JsonField> msg: "Not Found" </JsonField>
+        <JsonField> status: "404" </JsonField>
+        <JsonField> timestamp: "2024-..." </JsonField>
+        <p>&#125;</p>
+        </JsonObject>
+        
         </div>
     ) 
 }

@@ -14,8 +14,27 @@ const Container = styled.div`
 `;
 
 const StyledDivLower = styled.div`
-    display: flex;
+    display: grid;
+      align-content: stretch;
+    grid-template-columns: 1fr 7fr;
     gap: 1rem;
+`;
+
+const StyledOutlet = styled.div`
+        width: 100%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+`;
+
+const StyledContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 80%;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 function Layout({currentUser, setCurrentUser}) {
@@ -28,7 +47,7 @@ function Layout({currentUser, setCurrentUser}) {
 
     return (
     <ThemeProvider theme={Themes[0]}>
-      <div className='container'>
+      <StyledContainer className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <ShowPath />
         <StyledDivLower className='lower-part'>
@@ -39,11 +58,11 @@ function Layout({currentUser, setCurrentUser}) {
                 <li> <Link to='/apidocs'>ApiDocs</Link> </li>
             </ul>
           </div>
-          <div className='main-content'>
+          <StyledOutlet className='main-content'>
             <Outlet />
-          </div>
+          </StyledOutlet>
         </StyledDivLower>
-      </div>
+      </StyledContainer>
     </ThemeProvider>
     )
 

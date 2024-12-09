@@ -16,7 +16,7 @@ const JsonObject = styled.div`
     padding: 1rem;
     
     background-color: ${props => props.theme.white};
-    border: 0.4rem solid ${props => props.theme.black};
+    border: 0.25rem solid ${props => props.theme.black};
 `;
 
 const JsonField = styled.div`
@@ -32,12 +32,12 @@ const StyledTable = styled.table`
     border-radius: 1rem;
     padding: 1rem;
 
-    border: 0.4rem solid ${props => props.theme.black};
+    border: 0.25rem solid ${props => props.theme.black};
 `;
 
 const StyledHead = styled.thead`
-    border-radius: 0.2rem;
-    padding: 0.2rem;
+    border-radius: 0.1rem;
+    padding: 0.1rem;
     background-color: {props => props.theme.gray};
     & th {
         text-align: left;
@@ -45,25 +45,27 @@ const StyledHead = styled.thead`
 `;
 
 const StyledRow = styled.tr`
-    border-radius: 0.2rem;
-    padding: 0.2rem;
-    border: 0.2rem solid #464646;
+    border-radius: 0.1rem;
+    padding: 0.1rem;
+    border: 0.1rem solid #464646;
     background-color: {props => props.theme.gray};
     &:nth-child(odd) {
-        border: 0.2rem solid #666666;
+        border: 0.1rem solid #666666;
         background-color: {props => props.theme.red};
     }
 `;
 
 const StyledCell = styled.td`
-    padding: 0.2rem;
+    padding: 0.1rem;
     text-align: left;
 `;
 
 const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    max-width: 80%;
 `;
 
 function ApiDocs({currentUser}) 
@@ -115,7 +117,6 @@ function ApiDocs({currentUser})
     return (
         <StyledDiv className="trips_table">
         <h1>API Doc</h1>
-        <a href="https://exam.obhnothing.dk/api/routes">Api Link</a>
         
         <StyledTable>
 

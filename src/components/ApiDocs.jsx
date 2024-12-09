@@ -60,6 +60,12 @@ const StyledCell = styled.td`
     text-align: left;
 `;
 
+const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+`;
+
 function ApiDocs({currentUser}) 
 {
 
@@ -107,7 +113,7 @@ function ApiDocs({currentUser})
     }, [])
 
     return (
-        <div className="trips_table">
+        <StyledDiv className="trips_table">
         <h1>API Doc</h1>
         <a href="https://exam.obhnothing.dk/api/routes">Api Link</a>
         
@@ -133,9 +139,49 @@ function ApiDocs({currentUser})
         <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>/pokemon/&#123;id&#125;</a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> 
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
+        /pokemon-species/&#123;id&#125;
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> 
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
+        /pokemon-abilities/&#123;id&#125;
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> 
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
+        /pokemon-moves/&#123;id&#125;
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
 
         </tbody>
         </StyledTable>
+        
+        <h3>api format</h3>
+        <JsonObject>
+        <p>&#123;</p>
+        <JsonField> name: "bulbasaur",</JsonField>
+        <JsonField> abilities: [ </JsonField>
+        <JsonField>&nbsp;&nbsp;&nbsp;&nbsp;&#123; id: 1, name: "curl up" &#125;, </JsonField>
+        <JsonField>&nbsp;&nbsp;&nbsp;&nbsp;&#123;...&#125;</JsonField>
+        <JsonField>&nbsp;&nbsp; ], </JsonField>
+        <JsonField> hp: 10 </JsonField>
+        <JsonField> ... </JsonField>
+        <p>&#125;</p>
+        </JsonObject>
 
         <h3>error format</h3>
         <JsonObject>
@@ -146,7 +192,7 @@ function ApiDocs({currentUser})
         <p>&#125;</p>
         </JsonObject>
         
-        </div>
+        </StyledDiv>
     ) 
 }
 

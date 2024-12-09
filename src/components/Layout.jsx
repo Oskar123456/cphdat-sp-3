@@ -13,6 +13,11 @@ const Container = styled.div`
     flex-direction: column;
 `;
 
+const StyledDivLower = styled.div`
+    display: flex;
+    gap: 1rem;
+`;
+
 function Layout({currentUser, setCurrentUser}) {
 
     const [theme, setTheme] = useState("")
@@ -26,7 +31,7 @@ function Layout({currentUser, setCurrentUser}) {
       <div className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <ShowPath />
-        <div className='lower-part'>
+        <StyledDivLower className='lower-part'>
           <div className='sidebar'>
             <ul className='menu'>
                 <li> <Link to='/home'>Home</Link> </li>
@@ -37,7 +42,7 @@ function Layout({currentUser, setCurrentUser}) {
           <div className='main-content'>
             <Outlet />
           </div>
-        </div>
+        </StyledDivLower>
       </div>
     </ThemeProvider>
     )

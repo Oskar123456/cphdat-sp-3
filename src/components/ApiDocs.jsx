@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router";
-import { Outlet } from "react-router";
+import { NavLink, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { fetchWithJwt } from '../js/Accounts.js';
 import { styled } from 'styled-components';
 
@@ -15,7 +15,12 @@ const JsonObject = styled.div`
     border-radius: 1rem;
     padding: 1rem;
     
-    border: 0.4rem solid black;
+    background-color: ${props => props.theme.white};
+    border: 0.4rem solid ${props => props.theme.black};
+`;
+
+const JsonField = styled.div`
+    text-indent: 1rem;
 `;
 
 const StyledTable = styled.table`
@@ -23,37 +28,36 @@ const StyledTable = styled.table`
     font-optical-sizing: auto;
     font-weight: <weight>;
     font-style: normal;
-    background-color: #464646;
+    background-color: ${props => props.theme.white};
     border-radius: 1rem;
     padding: 1rem;
 
-    border: 0.4rem solid black;
+    border: 0.4rem solid ${props => props.theme.black};
 `;
 
-const StyledHead = styled.th`
+const StyledHead = styled.thead`
     border-radius: 0.2rem;
     padding: 0.2rem;
-    border: 0.2rem solid #464646;
-    background-color: #464646;
+    background-color: {props => props.theme.gray};
+    & th {
+        text-align: left;
+    }
 `;
 
 const StyledRow = styled.tr`
     border-radius: 0.2rem;
     padding: 0.2rem;
     border: 0.2rem solid #464646;
-    background-color: #464646;
+    background-color: {props => props.theme.gray};
     &:nth-child(odd) {
         border: 0.2rem solid #666666;
-        background-color: #666666;
+        background-color: {props => props.theme.red};
     }
 `;
 
 const StyledCell = styled.td`
     padding: 0.2rem;
-`;
-
-const JsonField = styled.div`
-    text-indent: 1rem;
+    text-align: left;
 `;
 
 function ApiDocs({currentUser}) 
@@ -99,7 +103,7 @@ function ApiDocs({currentUser})
     }
 
     useEffect(() => {
-        fetchApiSpec();
+        //fetchApiSpec();
     }, [])
 
     return (
@@ -109,13 +113,13 @@ function ApiDocs({currentUser})
         
         <StyledTable>
 
-        <thead>
+        <StyledHead>
         <tr key={crypto.randomUUID()}>
         <th> method </th>
         <th> path </th>
         <th> role(s) </th>
         </tr>
-        </thead>
+        </StyledHead>
         <tbody>
 
         <StyledRow key={crypto.randomUUID()}>

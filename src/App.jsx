@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useActionState } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './styles/App.css'
 
@@ -13,17 +13,7 @@ function App()
 {
     const [currentUser, setCurrentUser] = useState({ loggedIn: false })
     
-    return (
-    <Routes>
-        <Route path="/" element={<Layout currentUser={currentUser} setCurrentUser={setCurrentUser}/>}>
-            <Route index element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-            <Route path="/apidocs" element={<ApiDocs currentUser={currentUser}  />} />
-            <Route path="/pokedex" element={<p>WIP</p>} />
-        </Route>
-    </Routes>
-    )
+    return ( <Layout currentUser={currentUser} setCurrentUser={setCurrentUser}/>)
 }
 
 export default App

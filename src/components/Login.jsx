@@ -1,5 +1,5 @@
 import { useEffect, useState, useActionState } from "react";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 import { login, logout, getUser } from '../js/Accounts.js'
 import HttpRequest from '../js/HttpRequest.js'
 

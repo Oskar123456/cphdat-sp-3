@@ -1,13 +1,28 @@
-import { Outlet } from "react-router";
-import { NavLink, Link } from "react-router";
+import React, {useState, useEffect} from "react"
+import { Outlet } from "react-router-dom";
+import { styled, ThemeProvider } from "styled-components";
+import { NavLink, Link } from "react-router-dom";
+
+import Themes from '../js/Themes.js'
 
 import Header from './Header.jsx'
 import ShowPath from './ShowPath.jsx'
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 function Layout({currentUser, setCurrentUser}) {
 
+    const [theme, setTheme] = useState("")
+    
+    useEffect(() => {
+        setTheme(Themes[0]);
+    }, [])
+
     return (
-    <nav>
+    <ThemeProvider theme={Themes[0]}>
       <div className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <ShowPath />
@@ -24,7 +39,7 @@ function Layout({currentUser, setCurrentUser}) {
           </div>
         </div>
       </div>
-    </nav>
+    </ThemeProvider>
     )
 
 }

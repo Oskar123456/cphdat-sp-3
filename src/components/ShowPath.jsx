@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Outlet, useLocation } from "react-router";
-import { NavLink, Link } from "react-router";
+import { Outlet, useLocation } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function ShowPath() {
     

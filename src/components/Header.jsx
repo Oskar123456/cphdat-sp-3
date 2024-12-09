@@ -1,5 +1,5 @@
-import { Outlet } from "react-router";
-import { NavLink, Link } from "react-router";
+import { Outlet } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import Logo from '../../public/images/pokeball.png'
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 
 function Home() {
 

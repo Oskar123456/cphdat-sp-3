@@ -7,8 +7,8 @@ function Home() {
 
     return (
         <div className="article">
-          <h1>Trips API</h1>
-          <p>A simple travel API free to use</p>
+          <h1>Pokedex API</h1>
+          <p>An index of pokemon from a deployed database fueled by <a href="https://pokeapi.co">pokeapi.co</a></p>
         </div>
     ) 
 }

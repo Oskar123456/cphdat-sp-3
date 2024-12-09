@@ -15,11 +15,8 @@ function Layout({currentUser, setCurrentUser}) {
           <div className='sidebar'>
             <ul className='menu'>
                 <li> <Link to='/home'>Home</Link> </li>
-                <li> <Link to='/trips'>Trips</Link> </li>
+                <li> <Link to='/trips'>Pokedex</Link> </li>
                 <li> <Link to='/apidocs'>ApiDocs</Link> </li>
-                <li> <Link to='/guides'>Guides</Link> </li>
-                <li> <Link to='/usertest'>UserTest</Link> </li>
-                <li> <Link to='/admintest'>AdminTest</Link> </li>
             </ul>
           </div>
           <div className='main-content'>

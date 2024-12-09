@@ -14,6 +14,42 @@ const JsonObject = styled.div`
     background-color: #464646;
     border-radius: 1rem;
     padding: 1rem;
+    
+    border: 0.4rem solid black;
+`;
+
+const StyledTable = styled.table`
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    background-color: #464646;
+    border-radius: 1rem;
+    padding: 1rem;
+
+    border: 0.4rem solid black;
+`;
+
+const StyledHead = styled.th`
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    border: 0.2rem solid #464646;
+    background-color: #464646;
+`;
+
+const StyledRow = styled.tr`
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    border: 0.2rem solid #464646;
+    background-color: #464646;
+    &:nth-child(odd) {
+        border: 0.2rem solid #666666;
+        background-color: #666666;
+    }
+`;
+
+const StyledCell = styled.td`
+    padding: 0.2rem;
 `;
 
 const JsonField = styled.div`
@@ -70,8 +106,9 @@ function ApiDocs({currentUser})
         <div className="trips_table">
         <h1>API Doc</h1>
         <a href="https://exam.obhnothing.dk/api/routes">Api Link</a>
+        
+        <StyledTable>
 
-        <table>
         <thead>
         <tr key={crypto.randomUUID()}>
         <th> method </th>
@@ -80,31 +117,21 @@ function ApiDocs({currentUser})
         </tr>
         </thead>
         <tbody>
-        { apiSpec.length > 0 ? (
-            apiSpec.map(t => {
-                return (
-                    <tr key={crypto.randomUUID()}>
-                    
-                    <td> {t.method} </td>
-                    <td> <a href={"https://exam.obhnothing.dk/api" + t.path}>{t.path}</a> </td>
-                    <td> {t.roles} </td>
-                    
-                    </tr>
-                )
-            })) : (
-                    <tr key={crypto.randomUUID()}>
-                    
-                    <td><Link to={'/home/'}>no api specs found</Link></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    
-                    </tr>
-            )
-        }
+
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>/pokemon</a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
         
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>/pokemon/&#123;id&#125;</a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+
         </tbody>
-        </table>
+        </StyledTable>
 
         <h3>error format</h3>
         <JsonObject>

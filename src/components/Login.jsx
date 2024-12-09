@@ -30,7 +30,7 @@ function Login({currentUser, setCurrentUser})
             <label htmlFor="password">password: </label>
             <input name="password" id="password" placeholder="something complicated" onChange={(pw) => setUserPassword(pw.target.value)}/>
             <button onClick={submitAction}>Sign up</button>
-            {!!message && <p>{message}</p>}
+            {message && <p>{message}</p>}
             </form> 
         ) : (
             <h2>Welcome back { currentUser.username }</h2>

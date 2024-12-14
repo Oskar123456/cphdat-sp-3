@@ -137,15 +137,33 @@ function ApiDocs({currentUser})
         
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
-        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>/pokemon/&#123;id&#125;</a> </StyledCell>
+        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon/{id}"}>/pokemon/&#123;id&#125;</a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
         
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
-        /pokemon-species/&#123;id&#125;
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/habitat"}>
+        /pokemon/habitat
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> 
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/habitat/{name}"}>
+        /pokemon/habitat/&#123;name&#125;
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> GET </StyledCell>
+        <StyledCell> 
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/type"}>
+        /pokemon/type
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
@@ -153,17 +171,8 @@ function ApiDocs({currentUser})
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
-        /pokemon-abilities/&#123;id&#125;
-        </a> </StyledCell>
-        <StyledCell> [ANYONE] </StyledCell>
-        </StyledRow>
-
-        <StyledRow key={crypto.randomUUID()}>
-        <StyledCell> GET </StyledCell>
-        <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>
-        /pokemon-moves/&#123;id&#125;
+        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/type/{name}"}>
+        /pokemon/type/&#123;name&#125;
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>

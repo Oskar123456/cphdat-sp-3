@@ -105,7 +105,7 @@ const StyledPokemonCard = styled.div`
 
 function Pokedex({currentUser, setCurrentUser}) {
 
-    const url = "http://localhost:9999/api/pokemon";
+    const url = "https://exam.obhnothing.dk/api/pokemon";
 
     const [description, setDescription] = useState('');
     const [pokemon, setPokemon] = useState([]);

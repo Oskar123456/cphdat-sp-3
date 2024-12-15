@@ -2,9 +2,19 @@ import { Outlet } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-import Logo from '../../public/images/pokeball.png'
+import Logo from '../images/pokeball.png'
 
 import Logout from './Logout.jsx'
+
+const StyledUl = styled.ul`
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 1rem;
+    & li a {
+        color: black;
+    }
+`;
 
 const StyledDiva = styled.div`
     display: flex;
@@ -22,13 +32,14 @@ function Header({currentUser, setCurrentUser}) {
         <StyledDiva className="panel">
         <a href="/"> <img src={Logo}/> </a>
         <h1>Pokedex</h1> 
+        <div className='sidebar'>
+        <StyledUl className='menu'>
+        <li> <Link to='/home'>Home</Link> </li>
+        <li> <Link to='/pokedex'>Pokedex</Link> </li>
+        <li> <Link to='/apidocs'>ApiDocs</Link> </li>
+        </StyledUl>
+        </div>
 
-        { currentUser.loggedIn ?
-            (<div><p>{currentUser.username} ({currentUser.roles})</p>
-             <Logout setCurrentUser={setCurrentUser}/></div>) 
-            :
-            (<Link to='/login'>log in</Link>)
-        }
         </StyledDiva>
     )
 

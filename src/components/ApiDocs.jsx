@@ -65,7 +65,7 @@ const StyledDiv = styled.div`
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.8rem;
-    max-width: 80%;
+    width: 100%;
 `;
 
 function ApiDocs({currentUser}) 

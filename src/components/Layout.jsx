@@ -14,10 +14,6 @@ const Container = styled.div`
 `;
 
 const StyledDivLower = styled.div`
-    display: grid;
-      align-content: stretch;
-    grid-template-columns: 1fr 7fr;
-    gap: 1rem;
 `;
 
 const StyledOutlet = styled.div`
@@ -43,21 +39,15 @@ function Layout({currentUser, setCurrentUser}) {
     
     useEffect(() => {
         setTheme(Themes[0]);
+        console.log(JSON.stringify(theme));
     }, [])
 
     return (
     <ThemeProvider theme={Themes[0]}>
       <StyledContainer className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        <ShowPath />
+        <ShowPath currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <StyledDivLower className='lower-part'>
-          <div className='sidebar'>
-            <ul className='menu'>
-                <li> <Link to='/home'>Home</Link> </li>
-                <li> <Link to='/pokedex'>Pokedex</Link> </li>
-                <li> <Link to='/apidocs'>ApiDocs</Link> </li>
-            </ul>
-          </div>
           <StyledOutlet className='main-content'>
             <Outlet />
           </StyledOutlet>

@@ -11,7 +11,15 @@ const Themes =
         poke_grass: "#7cfc00",
         poke_poison: "#9447fe",
         red: "#EA4656",
-        poke_red: "#FF6B57"
+        poke_red: "#FF6B57",
+        poison: {
+            fg: "#EEE3E3",
+            bg: "#9447fe"
+        },
+        grass: {
+            fg: "#423B3B",
+            bg: "#7cfc00"
+        }
     },
     {
         black: "#000000",
@@ -24,7 +32,15 @@ const Themes =
         poke_grass: "#7cfc00",
         poke_poison: "#9447fe",
         red: "#EA4656",
-        poke_red: "#FF6B57"
+        poke_red: "#FF6B57",
+        poison: {
+            fg: "#EEE3E3",
+            bg: "#9447fe"
+        },
+        grass: {
+            fg: "#423B3B",
+            bg: "#7cfc00"
+        }
     }
 ];
 

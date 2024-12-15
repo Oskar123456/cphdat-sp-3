@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Outlet, useOutletContext } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
+
+import Themes from '../js/Themes.js';
+import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -8,19 +11,107 @@ const StyledDiv = styled.div`
     gap: 0.5rem;
     font-size: 0.8rem;
     width: 100%;
+    border-radius: 0.5rem;
+    background-color: ${props => props.theme.poke_white};
     @media (max-width: 768px) {
         width: 100%;
     }
 `;
 
+const StyledPokedexOuter = styled.div`
+    background-color: ${props => props.theme.poke_white};
+    border-radius: 0.5rem;
+    border: 0.25rem solid ${props => props.theme.poke_black};
+    padding: 0.5rem;
+`;
+
+const StyledPokedexMiddle = styled.div`
+`;
+
+const StyledPokedexInner = styled.div`
+`;
+
 const StyledPanel = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 0.5rem;
     font-size: 0.8rem;
+    height: 4rem;
     width: 100%;
     @media (max-width: 768px) {
         width: 100%;
+    }
+
+`;
+
+const StyledTextInput = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    & div {
+    background-color: ${props => props.theme.white};
+        display: flex;
+        gap: 0.5rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        align-items: center;
+        height: 2rem;
+        border-radius: 0.5rem;
+        border: 0.2rem solid ${props => props.theme.poke_gray};
+
+        & img {
+            height: 1.2rem;
+        }
+        
+        & input {
+            height: 95%;
+            border: none;
+            caret-color: ${props => props.theme.poke_black};
+        }
+        
+        & input:focus {
+            border: none;
+            outline: none;
+        }
+    }
+    
+`;
+
+const StyledSearchFilters = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    
+    & button {
+        gap: 0.5rem;
+        align-items: center;
+        display: flex;
+        padding-top: 0.1rem;
+        height: 2.31rem;
+        border-radius: 0.5rem;
+        border: 0.2rem solid ${props => props.theme.poke_gray};
+        background-color: ${props => props.theme.white};
+
+        & p {
+            padding-top: 0.1rem;
+        }
+    }
+    
+    & img {
+        height: 1.2rem;
+        width: 1.4rem;
+    }
+        
+    .search-filter-pokeball {
+      transform: rotate(0deg);
+      transition: 0.1s linear;
+    }
+
+    .search-filter-pokeball.open {
+      transform: rotate(90deg);
+      transition: 0.1s linear;
     }
 `;
 
@@ -28,6 +119,9 @@ const StyledPokedex = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.5rem;
+    @media (min-width: 1000px) {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
 `;
 
 const StyledPokemonCard = styled.div`
@@ -40,6 +134,12 @@ const StyledPokemonCard = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
+    &:hover {
+    border: 0.2rem solid ${props => props.theme.poke_black};
+        background-color: ${props => props.theme.poke_red};
+        cursor: pointer;
+    }
     
     & .pokemon-card-title {
     height: fit-content;
@@ -93,23 +193,54 @@ const StyledPokemonCard = styled.div`
         color: ${props => props.theme.poke_black};
     }
 
-    & .pokemon-card-type-grass {
-        background-color: ${props => props.theme.poke_grass};
+`;
+
+const StyledTypeName = styled.p`
+    width: fit-content;
+    border-radius: 0.4rem;
+    padding: 0.1rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+`;
+
+const StyledSearchFilterSelectionContainer = styled.div`
+    .search-filter-selection {
+        max-height: 0;
+        transition: max-height 0.1s ease-out;
+        overflow: hidden;
+    }
+    .search-filter-selection.open {
+        max-height: 6rem;
+        transition: max-height 0.1s ease-in;
+    }
+
+    ul {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .type-list {
+        list-style-type: none;
     }
     
-    & .pokemon-card-type-poison {
-        background-color: ${props => props.theme.poke_poison};
-        color: ${props => props.theme.poke_white};
-    }
 `;
 
 function Pokedex({currentUser, setCurrentUser}) {
 
-    const url = "https://exam.obhnothing.dk/api/pokemon";
+    const theme = useOutletContext();
+
+    const url_all_pokemon = "http://localhost:9999/api/pokemon";
+    const url_all_habitat = "http://localhost:9999/api/pokemon/habitat";
+    const url_all_type = "http://localhost:9999/api/pokemon/type";
+    const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zkAzJ6tsBorjt0W613AbwAHaHa%26pid%3DApi&f=1&ipt=cedf55d33c90422aa55cccd31464f32af8e892be267a8e0777468532923c5683&ipo=images";
+    const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Fi%2F4b14c981-e3c8-4be0-89fd-ee3e41ce84b1%2Fd9rc284-605c99d0-4da6-4054-ad5a-34547bf3cd8a.png%2Fv1%2Ffill%2Fw_979%2Ch_816%2Cq_70%2Cstrp%2Fpokeball_black_icon_by_ryuu_orochi_d9rc284-pre.jpg&f=1&nofb=1&ipt=b43864bfa95b32f95cb4c18f2f74f91016ebc78903919409b762202e8f1ed95d&ipo=images";
 
     const [description, setDescription] = useState('');
     const [pokemon, setPokemon] = useState([]);
     const [pokeGrid, setPokeGrid] = useState();
+    const [searchFiltersOn, setSearchFiltersOn] = useState(false);
+    const [habitats, setHabitats] = useState([])
+    const [types, setTypes] = useState([])
 
     const habitatImageLinks = {
         grassland: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpics.craiyon.com%2F2023-12-05%2FjeR-wXkaTWeDD1kiUkFtMA.webp&f=1&nofb=1&ipt=56633f31d666d4da599251b93143a11351ce97b99d1a845171b4a0fd514660c1&ipo=images",
@@ -129,21 +260,18 @@ function Pokedex({currentUser, setCurrentUser}) {
         if (!p_list) return <h1>No Data for makePokeGrid</h1>;
 
         const grid = [];
-
         for (let p of p_list) {
             let habitat_name = p.habitat.name.replace("-", "_");
-            //console.log(p.name);
-            //console.log(habitatImageLinks[habitat_name]);
             let ent = (
                 <StyledPokemonCard key={crypto.randomUUID()}>
                 <img className={p.habitat.name + "-card-habitat"} src={p.sprites.front_default} />
-                <p>{"#" + p.id}</p>
+                <p>{"#" + ("000" + p.id).slice(-3)}</p>
                 <p className="pokemon-card-title">{p.name}</p>
                 <div className="pokemon-card-type-container">
                 {
                     p.types.sort((a, b) => a.name > b.name).map(t => {
-                        return ( <p className={"pokemon-card-type-" + t.name} key={crypto.randomUUID()}>
-                            {t.name.charAt(0).toUpperCase() + t.name.substring(1)}</p>)
+                        return ( <StyledTypeName style={colorCodeType(theme, t)} key={crypto.randomUUID()}>
+                            {t.name.charAt(0).toUpperCase() + t.name.substring(1)}</StyledTypeName>)
                     })
                 }
                 </div>
@@ -151,38 +279,124 @@ function Pokedex({currentUser, setCurrentUser}) {
             );
             grid.push(ent);
         }
-
-        for (let p of grid) {
-            //console.log(JSON.stringify(p));
-        }
-        
         setPokeGrid(grid);
     }
     
+    function makeTypeList()
+    {
+        if (!types || types.length < 1) return <h1>No Data for makeTypeList</h1>;
+
+        const tps = [];
+        for (let t of types) {
+            let ent = <li key={crypto.randomUUID()} className={"type-" + t.name}>
+                <StyledTypeName style={colorCodeType(theme, t)}>{t.name}</StyledTypeName></li>
+                tps.push(ent);
+        }
+        console.log((tps));
+        return <ul className="type-list">{tps}</ul>
+    }
+
+    function buttonCrsClickCB(e) {
+        let img = document.getElementById("pokeball-img");
+        let containerOuter = document.getElementById("search-filter-selection-container");
+        containerOuter.style.display = "flex";
+        let container = document.getElementById("search-filter-selection");
+        if (searchFiltersOn) {
+            img.className = "search-filter-pokeball";
+            container.className = "search-filter-selection";
+            setSearchFiltersOn(false);
+        }
+        else {
+            img.className ="search-filter-pokeball open";
+            container.className = "search-filter-selection open";
+            setSearchFiltersOn(true);
+        }
+    }
+
+    function searchInputCB(e) {
+        console.log(e.target.value);
+        let pokemon_filtered = pokemon.filter(p => p.name.toLowerCase().includes(e.target.value));
+        makePokeGrid(pokemon_filtered);
+    }
+    
+    function filterCB(e) {
+        let pokemon_filtered = pokemon;
+        makePokeGrid(pokemon_filtered);
+    }
+
     useEffect(() => {
-        fetch(url).then(r => {
+        fetch(url_all_pokemon).then(r => {
             return r.json();
         }).then(j => {
             setPokemonWrapper(j);
         }).catch(e => {
-            console.log("ERROR");
             console.log(e.message);
-        })
+        });
+        
+        fetch(url_all_type).then(r => {
+            return r.json();
+        }).then(j => {
+            setTypes(j);
+        }).catch(e => {
+            console.log(e.message);
+        });
+        
+        fetch(url_all_habitat).then(r => {
+            return r.json();
+        }).then(j => {
+            setHabitats(j);
+        }).catch(e => {
+            console.log(e.message);
+        });
     }, [])
 
 
     return (
-        <StyledDiv>
+        <StyledPokedexOuter>
+        <StyledPokedexMiddle>
+        <StyledPokedexInner>
+        <StyledDiv >
 
-        <StyledPanel> </StyledPanel>
+        <StyledPanel>
+            <StyledTextInput>
+                <div>
+       
+                <img src={search_icon_url}/>
+                <input onChange={searchInputCB} type="text">
+                </input>
 
-        {pokemon ? (
+                </div>
+
+            </StyledTextInput>
+        
+            <StyledSearchFilters>
+        
+            <button onClick={buttonCrsClickCB} >
+                <p>Filters</p>
+                <img id="pokeball-img" src={pokeball_icon_url}/>
+            </button>
+        
+            </StyledSearchFilters>
+        </StyledPanel>
+
+        <StyledSearchFilterSelectionContainer  style={{display: "none"}} id="search-filter-selection-container">
+        <div className="search-filter-selection" id="search-filter-selection">
+        
+        {(types && types.length > 0) && makeTypeList()}
+        
+        </div>
+        </StyledSearchFilterSelectionContainer>
+
+        {(pokeGrid && pokeGrid.length > 0) ? (
             <StyledPokedex>{pokeGrid}</StyledPokedex>
         ) : (
-            <h1>No Data</h1>
+            <h1>no search results</h1>
         )}
-        
+
         </StyledDiv>
+        </StyledPokedexInner>
+        </StyledPokedexMiddle>
+        </StyledPokedexOuter>
     ) 
 }
 

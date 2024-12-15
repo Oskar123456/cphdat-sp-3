@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-import { Outlet } from "react-router-dom";
+import React, {useState, useEffect, createContext, useContext} from "react"
+import { Outlet, useOutletContext } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
@@ -39,7 +39,6 @@ function Layout({currentUser, setCurrentUser}) {
     
     useEffect(() => {
         setTheme(Themes[0]);
-        console.log(JSON.stringify(theme));
     }, [])
 
     return (
@@ -49,7 +48,7 @@ function Layout({currentUser, setCurrentUser}) {
         <ShowPath currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <StyledDivLower className='lower-part'>
           <StyledOutlet className='main-content'>
-            <Outlet />
+            <Outlet context={theme} />
           </StyledOutlet>
         </StyledDivLower>
       </StyledContainer>

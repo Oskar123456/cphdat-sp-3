@@ -254,9 +254,9 @@ function Pokedex({currentUser, setCurrentUser}) {
 
     const theme = useOutletContext();
 
-    const url_all_pokemon = "http://localhost:9999/api/pokemon";
-    const url_all_habitat = "http://localhost:9999/api/pokemon/habitat";
-    const url_all_type = "http://localhost:9999/api/pokemon/type";
+    const url_all_pokemon = "https://exam.obhnothing.dk/api/pokemon";
+    const url_all_habitat = "https://exam.obhnothing.dk/api/pokemon/habitat";
+    const url_all_type = "https://exam.obhnothing.dk/api/pokemon/type";
     const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zkAzJ6tsBorjt0W613AbwAHaHa%26pid%3DApi&f=1&ipt=cedf55d33c90422aa55cccd31464f32af8e892be267a8e0777468532923c5683&ipo=images";
     const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Fi%2F4b14c981-e3c8-4be0-89fd-ee3e41ce84b1%2Fd9rc284-605c99d0-4da6-4054-ad5a-34547bf3cd8a.png%2Fv1%2Ffill%2Fw_979%2Ch_816%2Cq_70%2Cstrp%2Fpokeball_black_icon_by_ryuu_orochi_d9rc284-pre.jpg&f=1&nofb=1&ipt=b43864bfa95b32f95cb4c18f2f74f91016ebc78903919409b762202e8f1ed95d&ipo=images";
 

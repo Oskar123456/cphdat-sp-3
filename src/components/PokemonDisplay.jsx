@@ -46,6 +46,10 @@ const StyledLeft = styled.div`
     > * {
         min-width: 100%;
     }
+
+    img {
+        border: 0.2rem solid ${props => props.theme.black};
+    }
 `;
 
 const StyledStats = styled.div`

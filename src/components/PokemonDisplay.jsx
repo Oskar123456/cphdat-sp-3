@@ -171,7 +171,6 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             
             <PokemonImgDiv pokemon={p} />
             
-            <StatChart pokemon={p} theme={theme} stats={[]} />
             
             </StyledLeft>
             

@@ -9,14 +9,16 @@ import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from "./PokemonImgDiv.jsx";
 import TypeList from './TypeList.jsx'
 
+
 import CanvasJSReact from '@canvasjs/react-charts';
+
+const CanvasJS = CanvasJSReact.CanvasJS;
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function StatChart({pokemon, stats, theme}) {
 
     const canvasRef = useRef(null);
 
-    const CanvasJS = CanvasJSReact.CanvasJS;
-    const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
     const [w, h] = [135, 150];
 

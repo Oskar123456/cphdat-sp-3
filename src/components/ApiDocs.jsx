@@ -66,6 +66,15 @@ const StyledDiv = styled.div`
     gap: 0.5rem;
     font-size: 0.8rem;
     width: 100%;
+
+    a {
+        font-family: "Source Code Pro", monospace;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+        color: black;
+        margin-left: 0rem;
+    }
 `;
 
 function ApiDocs({currentUser}) 
@@ -117,6 +126,9 @@ function ApiDocs({currentUser})
     return (
         <StyledDiv className="trips_table">
         <h1>API Doc</h1>
+
+        <a href="https://github.com/Oskar123456/examcphdat">backend source code</a>
+        <a href="https://github.com/Oskar123456/cphdat-sp-3">frontend source code</a>
         
         <StyledTable>
 

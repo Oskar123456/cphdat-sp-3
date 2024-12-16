@@ -9,6 +9,7 @@ import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from "./PokemonImgDiv.jsx";
 import TypeList from './TypeList.jsx'
 import StatChart from './StatChart.jsx'
+import Testchart from '../js/testchart.jsx'
 
 import { Chart } from 'chart.js'
 
@@ -162,6 +163,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
         }
     }, [pokemon, habitats, types, theme])
 
+    //<StatChart pokemon={p} theme={theme} stats={[]} />
     return (
         <StyledDiv >
 
@@ -171,6 +173,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             
             <PokemonImgDiv pokemon={p} />
             
+            <Testchart />
             
             </StyledLeft>
             

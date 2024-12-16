@@ -1,9 +1,10 @@
+import {Component} from 'react'
 import CanvasJSReact from '@canvasjs/react-charts';
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class App extends Component {	
+class Testchart extends Component {	
     render() {
         const options = {
             title: {
@@ -21,13 +22,10 @@ class App extends Component {
             }]
         }
 
-        return (
-            <div>
-            <CanvasJSChart options = {options}
-            />
-            </div>
-        );
+        return ( <div> <CanvasJSChart options = {options} /> </div> );
     }
 }
 
 
+
+export default Testchart

@@ -17,9 +17,9 @@ import ErrorPage from './components/ErrorPage.jsx'
 function App() 
 {
     
-    const url_all_pokemon = "http://localhost:9999/api/pokemon";
-    const url_all_habitat = "http://localhost:9999/api/pokemon/habitat";
-    const url_all_type = "http://localhost:9999/api/pokemon/type";
+    const url_all_pokemon = "https://exam.obhnothing.dk/api/pokemon";
+    const url_all_habitat = "https://exam.obhnothing.dk/api/pokemon/habitat";
+    const url_all_type = "https://exam.obhnothing.dk/api/pokemon/type";
     
     const [currentUser, setCurrentUser] = useState({ loggedIn: false })
     const [theme, setTheme] = useState({})

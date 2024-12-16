@@ -8,7 +8,7 @@ import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from "./PokemonImgDiv.jsx";
 import TypeList from './TypeList.jsx'
-import StatChart from './StatChart.jsx'
+//import StatChart from './StatChart.jsx'
 import Testchart from '../js/testchart.jsx'
 
 import { Chart } from 'chart.js'

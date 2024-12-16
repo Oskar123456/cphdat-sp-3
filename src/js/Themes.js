@@ -12,13 +12,77 @@ const Themes =
         poke_poison: "#9447fe",
         red: "#EA4656",
         poke_red: "#FF6B57",
-        poison: {
+        habitat_grassland: {
+            fg: "#423B3B",
+            bg: "#7cfc00"
+        },
+        type_poison: {
             fg: "#EEE3E3",
             bg: "#9447fe"
         },
-        grass: {
+        type_grass: {
             fg: "#423B3B",
             bg: "#7cfc00"
+        },
+        type_fire: {
+            fg: "#EEE3E3",
+            bg: "#fb7604"
+        },
+        type_flying: {
+            fg: "#423B3B",
+            bg: "#edf7f9"
+        },
+        type_water: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_bug: {
+            fg: "#EEE3E3",
+            bg: "#31a831"
+        },
+        type_normal: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_ground: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_electric: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_fairy: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_fighting: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_psychic: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_rock: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_steel: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_ice: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_ghost: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
+        },
+        type_dragon: {
+            fg: "#EEE3E3",
+            bg: "#007fff"
         }
     },
     {

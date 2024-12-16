@@ -15,6 +15,13 @@ const StyledDiv = styled.div`
     }
 `;
 
+const StyledPath = styled.div`
+    & a {
+        color: black;
+        margin-right: 0.4rem;
+    }
+`;
+
 function ShowPath({currentUser, setCurrentUser}) {
     
     let acc = '';
@@ -28,12 +35,13 @@ function ShowPath({currentUser, setCurrentUser}) {
 
     return (
         <StyledDiv className="show_path">
+        <StyledPath>
         { (path && path.length > 1) ? 
             path.split('/').map(sp => {
                 if (sp.length > 0) {
                     acc += '/' + sp;
                     return (<Link key={crypto.randomUUID()} className="path_substr" 
-                        to={acc}>{'→' + sp}</Link>)
+                        to={acc}>{'→ ' + sp}</Link>)
                 }
             }                
             ) : (
@@ -41,6 +49,7 @@ function ShowPath({currentUser, setCurrentUser}) {
                 to="/home">→home</Link>
             )
         }
+        </StyledPath>
         { currentUser.loggedIn ?
             (<div><p>{currentUser.username} ({currentUser.roles})</p>
              <Logout setCurrentUser={setCurrentUser}/></div>) 

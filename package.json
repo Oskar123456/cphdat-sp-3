@@ -10,6 +10,8 @@
     "jsonserver": "jsonserver --path data/db.json --port 3000 --host 127.0.0.1"
   },
   "dependencies": {
+    "@canvasjs/react-charts": "^1.0.2",
+    "chart.js": "^4.4.3",
     "jsonserver": "^0.1.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

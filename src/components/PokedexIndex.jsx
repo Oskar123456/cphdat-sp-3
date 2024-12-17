@@ -3,6 +3,8 @@ import { Outlet, useOutletContext } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
+import TypeList from './TypeList.jsx'
+
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";
@@ -134,6 +136,22 @@ const StyledPokedex = styled.div`
     @media (min-width: 1000px) {
         grid-template-columns: repeat(8, minmax(0, 1fr));
     }
+    @media (max-width: 520px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (max-width: 415px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0 0;
+    }
+    
+    li {
+        padding: 0.0rem;;
+        margin: 0 0;
+    }
 `;
 
 const StyledPokemonCard = styled.div`
@@ -152,6 +170,18 @@ const StyledPokemonCard = styled.div`
     > * {
         margin: 0 0;
         gap: 0;
+    }
+
+    ul {
+        padding-top: 0.2rem;
+    }
+
+    li {
+        padding-right: 0.2rem;
+    }
+
+    li > * { 
+        padding: 0.2rem;
     }
 
     img {
@@ -282,6 +312,17 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
     const [searchFiltersOn, setSearchFiltersOn] = useState(false);
     const [filterHabitats, setFilterHabitats] = useState([])
     const [filterTypes, setFilterTypes] = useState([])
+    
+    /*
+    <div className="pokemon-card-type-container">
+    {
+        p.types.sort((a, b) => a.name > b.name).map(t => {
+            return ( <StyledTypeName style={colorCodeType(theme, t)} key={crypto.randomUUID()}>
+                {capitalizeWord(t.name)}</StyledTypeName>)
+        })
+    }
+    </div>
+     * */
 
     function makePokeGrid(p_list, type_filter)
     {
@@ -307,14 +348,7 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
                 <PokemonImgDiv pokemon={p} />
                 <p>{"#" + ("000" + p.id).slice(-3)}</p>
                 <p className="pokemon-card-title">{capitalizeWord(p.name)}</p>
-                <div className="pokemon-card-type-container">
-                {
-                    p.types.sort((a, b) => a.name > b.name).map(t => {
-                        return ( <StyledTypeName style={colorCodeType(theme, t)} key={crypto.randomUUID()}>
-                            {capitalizeWord(t.name)}</StyledTypeName>)
-                    })
-                }
-                </div>
+                <TypeList theme={theme} types={p.types} />           
                 </StyledPokemonCard>
                 </Link>
             );

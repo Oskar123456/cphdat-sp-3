@@ -4,6 +4,7 @@ const Themes =
         black: "#000000",
         white: "#FFFFFF",
         gray:  "#AAAAAA",
+        green:  "#7cfc55",
         poke_gray: "#DBDBDB",
         poke_shadow: "#C1B7B7",
         poke_white: "#EEE3E3",

@@ -11,7 +11,7 @@ import PokemonImgDiv from './PokemonImgDiv.jsx'
 const StyledTypeName = styled.li`
     border-radius: 0.4rem;
     padding: 0.1rem;
-    padding-top: 0.2rem;
+    padding-top: 0.1rem;
     padding-left: 0.2rem;
     padding-right: 0.2rem;
     border: none;
@@ -49,10 +49,15 @@ function TypeList({theme, types}){
     
     function makeTypeList()
     {
-        let lis = types.sort((a, b) => a.name > b.name).map(t => {
-            return ( <StyledTypeName key={crypto.randomUUID()}>
+        if (!types || types.length < 1)
+            return <ul></ul>
+        let lis = types;
+        if (types.length > 1)
+            lis = types.sort((a, b) => (a && b) ? a.name > b.name : false);
+        lis = lis.map(t => {
+            return t ? ( <StyledTypeName key={crypto.randomUUID()}>
                 <Link style={colorCodeType(theme, t)}  to={"/pokedex/type/" + t.name}>{capitalizeWord(t.name)}</Link>
-                </StyledTypeName>)
+                </StyledTypeName>) : <StyledTypeName key={crypto.randomUUID()}></StyledTypeName>;
         });
         return <ul>{lis}</ul>
     }

@@ -15,7 +15,8 @@ const StyledDiv = styled.div`
     font-family: "VT323", serif;
     font-weight: 600;
     font-style: normal;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
     gap: 0.5rem;
     font-size: 0.8rem;
     width: 100%;
@@ -42,11 +43,14 @@ const StyledLeft = styled.div`
     padding: 1rem;
     column-gap: 1rem;
 
+
     > * {
         min-width: 100%;
     }
 
     img {
+        border-radius: 0.4rem;
+        background-color: ${props => props.theme.poke_gray};
         border: 0.2rem solid ${props => props.theme.black};
     }
     
@@ -71,10 +75,13 @@ const StyledStats = styled.div`
 
 const StyledTypeContainer = styled.div`
     display: flex;
+    flex-direction: column;
     > * {
+    display: flex;
+        flex-wrap: wrap;
         margin: 0 0;
-        padding: 0 0;
-
+        padding: 0.2rem 0;
+        overflow: wrap;
     }
 
     h2 {
@@ -87,6 +94,7 @@ const StyledTypeContainer = styled.div`
     
     li {
         margin: 0 0;
+        padding: 0.2rem 0.2rem;
     }
 `
 
@@ -106,65 +114,43 @@ const StyledDescription = styled.div`
 
 `;
 
-function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 
-{
-    const loc = useLocation();
-    const pokemonName = useParams();
-    const [p, setP] = useState()
+const StyledImgDiv = styled.img`
+    width: 100%;
+`;
 
+function TypeDisplayList({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 
+{
+    
     useEffect(() => {
-        for (let p of pokemon)  {
-            if (p.name === pokemonName.name) {
-                setP(p);
-                console.log("set p to " + p.name);
-                break;
-            }
-        }
-    }, [pokemon, habitats, types, theme, pokemonName, loc])
+    }, [types])
 
     return (
         <StyledDiv >
-
-        {p ? (
-        <>
             <StyledLeft>
             
-            <PokemonImgDiv pokemon={p} />
-            
-            <StatChart pokemon={p} theme={theme} allPokemon={pokemon} />
+            <StyledImgDiv src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fart.pixilart.com%2F97b6697efc0daa9.png&f=1&nofb=1&ipt=92a2097eb9191551a5c1123f993eccacb261b66ff8857eb1253379105f335a20&ipo=images" />
             
             </StyledLeft>
             
             <StyledRight>
             
             <StyledDescription>
-            <h1>{capitalizeWord(p.name)} </h1> 
-            <p>{p.flavor_text.replace("\x0C", " ")}</p> 
-            <p>{"Its natural habitat is "} 
-            <Link to={"/pokedex/habitat/" + p.habitat.name} style={colorCodeHabitat(theme, p.habitat)}>
-            {capitalizeWord(p.habitat.name)}</Link></p> 
+            <h1>List of pokemon types</h1> 
             
             <StyledTypeContainer>
-            <h2>Types:</h2>
-            <TypeList theme={theme} types={p.types} />           
-            </StyledTypeContainer>
-            
-            <StyledTypeContainer>
-            <h2>Evolution:</h2>
-            <EvoChain theme={theme} pokemon={p} allPokemon={pokemon} />           
+            <TypeList theme={theme} types={types} />           
             </StyledTypeContainer>
             
             </StyledDescription>
 
             </StyledRight>
-        </>
-        ) : <h1>Loading...</h1>
-        }
         </StyledDiv>
     ) 
 }
 
-export default PokemonDisplay
+export default TypeDisplayList
+
+
 
 
 

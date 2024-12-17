@@ -12,6 +12,10 @@ import ApiDocs from './components/ApiDocs.jsx'
 import Pokedex from './components/Pokedex.jsx'
 import PokedexIndex from './components/PokedexIndex.jsx'
 import PokemonDisplay from './components/PokemonDisplay.jsx'
+import TypeDisplayList from './components/TypeDisplayList.jsx'
+import TypeDisplay from './components/TypeDisplay.jsx'
+import HabitatList from './components/HabitatList.jsx'
+import HabitatDisplay from './components/HabitatDisplay.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 
 import './styles/App.css'
@@ -74,6 +78,14 @@ function App()
             errorElement={<ErrorPage />} />}/>
         <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme}/>} 
             errorElement={<ErrorPage />}/>
+        <Route path="/pokedex/type" element={<TypeDisplayList types={types} theme={theme} 
+            errorElement={<ErrorPage />} />}/>
+        <Route path="/pokedex/type/:name" element={<TypeDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
+            errorElement={<ErrorPage />} />}/>
+        <Route path="/pokedex/habitat" element={<HabitatList habitats={habitats} theme={theme} 
+            errorElement={<ErrorPage />} />}/>
+        <Route path="/pokedex/habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
+            errorElement={<ErrorPage />} />}/>
         </Route>
         <Route path="/apidocs" element={<ApiDocs/>} />
         </Route>

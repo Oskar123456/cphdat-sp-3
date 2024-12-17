@@ -14,6 +14,8 @@ import PokedexIndex from './components/PokedexIndex.jsx'
 import PokemonDisplay from './components/PokemonDisplay.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
 
+import './styles/App.css'
+
 function App() 
 {
     

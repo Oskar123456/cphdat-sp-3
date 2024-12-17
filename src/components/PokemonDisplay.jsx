@@ -110,55 +110,12 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
     let pokemon_name = useParams();
     const [pokemonName, setPokemonName] = useState("");
     const [p, setP] = useState()
-    
-    function makeChart(thisP) {
-        
-        let attackVals = pokemon.map(p => p.attack).sort((a,b) => a > b);
-        let hpVals = pokemon.map(p => p.hp).sort((a,b) => a > b);
-        let defenseVals = pokemon.map(p => p.defense).sort((a,b) => a > b);
-        
-        let attackMin = 0;
-        let hpMin = 0;
-        let defenseMin = 0;
-        
-        let attackMax = Math.max(...attackVals);
-        let hpMax = Math.max(...hpVals);
-        let defenseMax = Math.max(...defenseVals);
-
-        const data = {
-            labels: ['hp', 'defense', 'attack'],
-            datasets: [
-                {
-                    label: 'stats',
-                    data: [thisP.hp, thisP.defense, thisP.attack]
-                }
-            ]
-        };
-        
-       // new Chart("stats", {
-       //     type: "bar",
-       //     data: {
-       //         labels: data.labels,
-       //         datasets: [{
-       //             data: data.datasets[0]
-       //         }]
-       //     },
-       //     options: {
-       //         legend: {display: false},
-       //         title: {
-       //             display: true,
-       //             text: "World Wine Production 2018"
-       //         }
-       //     }
-       // });
-    }
 
     useEffect(() => {
         setPokemonName(pokemon_name.name);
         for (let p of pokemon)  {
             if (p.name === pokemon_name.name) {
                 setP(p);
-                makeChart(p);
                 break;
             }
         }

@@ -200,8 +200,6 @@ const StyledPokemonCard = styled.div`
     }
 
     & p {
-        width: 100%;
-        
         text-align: left;
         font-size: 0.9rem;
         color: ${props => props.theme.poke_black};

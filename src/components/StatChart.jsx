@@ -85,7 +85,7 @@ function StatChart({pokemon, theme, allPokemon}) {
             w - statMax.toString().length * font_size / 2.5,
             5 * h_bars + 5 * padding + font_size);
 
-    }, [])
+    }, [pokemon, theme, allPokemon])
 
     return <canvas ref={canvasRef} height={h} width={w}/>
 

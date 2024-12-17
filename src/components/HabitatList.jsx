@@ -161,7 +161,7 @@ function HabitatList({theme, habitats}){
         let lis = habitats.sort((a, b) => (a && b) ? a.name > b.name : false);
         lis = lis.map(h => {
             return h ? ( <StyledTypeName key={crypto.randomUUID()}>
-                <Link style={colorCodeHabitat(theme, h)}  to={"/pokedex/type/" + h.name}>{capitalizeWord(h.name)}</Link>
+                <Link style={colorCodeHabitat(theme, h)}  to={"/pokedex/habitat/" + h.name}>{capitalizeWord(h.name)}</Link>
                 </StyledTypeName>) : <StyledTypeName key={crypto.randomUUID()}></StyledTypeName>;
         });
         return <ul>{lis}</ul>

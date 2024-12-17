@@ -88,6 +88,7 @@ function App()
             errorElement={<ErrorPage />} />}/>
         </Route>
         <Route path="/apidocs" element={<ApiDocs/>} />
+        <Route path="*" element={<ErrorPage />} />
         </Route>
         </Routes>
         </BrowserRouter>

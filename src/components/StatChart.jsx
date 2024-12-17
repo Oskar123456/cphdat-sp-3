@@ -20,10 +20,20 @@ function StatChart({pokemon, theme, allPokemon}) {
 
     useEffect(() => {
         const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
         
+        let dpr = Math.ceil(window.devicePixelRatio) || 1;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+        //context.scale(dpr, dpr);
+        
+        const context = canvas.getContext('2d')
+
         context.fillStyle = theme.poke_white;
         context.fillRect(0, 0, w, h)
+
 
         let w_graph = 0.63 * w;
         let h_bars = 0.12 * h;

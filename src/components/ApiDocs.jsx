@@ -119,7 +119,7 @@ function ApiDocs({currentUser})
     }
 
     function fetchApiSpec() {
-        fetch("https://exam.obhnothing.dk/api/routes")
+        fetch("https://pokedex.obhnothing.dk/api/routes")
             .then(r => {
                 return r.text();
             })
@@ -140,7 +140,7 @@ function ApiDocs({currentUser})
         <StyledDiv className="trips_table">
         <h1>API Doc</h1>
 
-        <a href="https://github.com/Oskar123456/examcphdat">backend source code</a>
+        <a href="https://github.com/Oskar123456/pokedexcphdat">backend source code</a>
         <a href="https://github.com/Oskar123456/cphdat-sp-3">frontend source code</a>
         
         <StyledTable>
@@ -156,20 +156,20 @@ function ApiDocs({currentUser})
 
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
-        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon"}>/pokemon</a> </StyledCell>
+        <StyledCell> <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon"}>/pokemon</a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
         
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
-        <StyledCell> <a href={"https://exam.obhnothing.dk/api" + "/pokemon/{id}"}>/pokemon/&#123;id&#125;</a> </StyledCell>
+        <StyledCell> <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/{id}"}>/pokemon/&#123;id&#125;</a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
         
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/habitat"}>
+        <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/habitat"}>
         /pokemon/habitat
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
@@ -178,7 +178,7 @@ function ApiDocs({currentUser})
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/habitat/{name}"}>
+        <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/habitat/{name}"}>
         /pokemon/habitat/&#123;name&#125;
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
@@ -187,7 +187,7 @@ function ApiDocs({currentUser})
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/type"}>
+        <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/type"}>
         /pokemon/type
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
@@ -196,7 +196,7 @@ function ApiDocs({currentUser})
         <StyledRow key={crypto.randomUUID()}>
         <StyledCell> GET </StyledCell>
         <StyledCell> 
-        <a href={"https://exam.obhnothing.dk/api" + "/pokemon/type/{name}"}>
+        <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/type/{name}"}>
         /pokemon/type/&#123;name&#125;
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>

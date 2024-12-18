@@ -24,9 +24,9 @@ import './styles/App.css'
 function App() 
 {
     
-    const url_all_pokemon = "https://exam.obhnothing.dk/api/pokemon";
-    const url_all_habitat = "https://exam.obhnothing.dk/api/pokemon/habitat";
-    const url_all_type = "https://exam.obhnothing.dk/api/pokemon/type";
+    const url_all_pokemon = "https://pokedex.obhnothing.dk/api/pokemon";
+    const url_all_habitat = "https://pokedex.obhnothing.dk/api/pokemon/habitat";
+    const url_all_type = "https://pokedex.obhnothing.dk/api/pokemon/type";
     
     const [currentUser, setCurrentUser] = useState({ loggedIn: false })
     const [theme, setTheme] = useState(Themes[0])

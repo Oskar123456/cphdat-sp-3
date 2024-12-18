@@ -1,6 +1,6 @@
 import { HttpRequestAsJson } from "./HttpRequest.js"
 
-const base_url = "https://exam.obhnothing.dk/api";
+const base_url = "https://pokedex.obhnothing.dk/api";
 const endpt_login = "/auth/login";
 
 let user_current = {};
@@ -8,7 +8,7 @@ let logged_in = false;
 
 function login(uname, upassword, uset, errorCallback) 
 {
-    fetch("https://exam.obhnothing.dk/api/auth/login", {
+    fetch("https://pokedex.obhnothing.dk/api/auth/login", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -58,7 +58,7 @@ function login(uname, upassword, uset, errorCallback)
 
 function signup(uname, upassword, uset, errorCallback) 
 {
-    fetch("https://exam.obhnothing.dk/api/auth/register", {
+    fetch("https://pokedex.obhnothing.dk/api/auth/register", {
         method: "POST",
         headers: {
             'Accept': 'application/json',

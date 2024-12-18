@@ -182,7 +182,6 @@ const StyledPokemonCard = styled.div`
     }
 
     &:hover {
-        border: 0.2rem solid ${props => props.theme.poke_black};
         background-color: ${props => props.theme.poke_red};
         cursor: pointer;
     }

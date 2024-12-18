@@ -8,6 +8,8 @@ import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from "./PokemonImgDiv.jsx";
 import TypeList from './TypeList.jsx'
+import AbilityList from './AbilityList.jsx'
+import MoveList from './MoveList.jsx'
 import EvoChain from './EvoChain.jsx'
 import StatChart from './StatChart.jsx'
 
@@ -41,13 +43,17 @@ const StyledLeft = styled.div`
     justify-content: flex-start;
     padding: 1rem;
     column-gap: 1rem;
+    row-gap: 1rem;
 
     > * {
         min-width: 100%;
     }
 
-    img {
+    div {
         border: 0.2rem solid ${props => props.theme.black};
+    }
+
+    img {
     }
     
 `;
@@ -79,6 +85,7 @@ const StyledTypeContainer = styled.div`
 
     h2 {
         font-size: 1rem;
+        text-decoration: underline;
     }
 
     ul {
@@ -88,9 +95,14 @@ const StyledTypeContainer = styled.div`
     li {
         margin: 0 0;
     }
+    
 `
 
 const StyledDescription = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
     a {
         border-radius: 0.5rem;
         padding: 0.2rem;
@@ -100,26 +112,132 @@ const StyledDescription = styled.div`
         margin: 0.1rem 0;
         padding: 0 0;
         display: flex; 
-        align-items: center;
         flex-wrap: wrap;
+        align-items: center;
 
         a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 0.1rem;
         }
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        color: ${props => props.theme.poke_red};
     }
     
     @media(max-width: 580px) {
         h1 { 
-            font-size: 0.8rem;
+            font-size: 1.4rem;
         }
         > * {
             font-size: 0.6rem;
         }
+        
     }
-
+    
+    @media(max-width: 580px) {
+        h1 { 
+            font-size: 1.4rem;
+        }
+        > * {
+            font-size: 0.6rem;
+        }
+        
+    }
+    
     p {
+        width: 55%;
+        overflow-wrap: break-word;
     }
 
+    @media(min-width: 480px) {
+        p {
+            width: 100%;
+        }
+    }
+    
+`;
+
+const StyledMoveContainer = styled.div`
+    > * {
+        margin: 0 0;
+        padding: 0 0;
+
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        text-decoration: underline;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    li {
+        margin: 0 0;
+    }
+`;
+
+const StyledAbilityContainer = styled.div`
+    > * {
+        margin: 0 0;
+        padding: 0 0;
+
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        text-decoration: underline;
+    }
+
+    ul {
+        display: flex;
+        column-gap: 1.8rem;
+    }
+    
+    li {
+        margin: 0 0;
+    }
+    
+    @media(max-width: 500px) {
+        ul {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+`;
+
+const StyledEvoContainer = styled.div`
+    display: flex;
+    > * {
+        margin: 0 0;
+        padding: 0 0;
+
+    }
+
+    h2 {
+        font-size: 1rem;
+        text-decoration: underline;
+    }
+
+    ul {
+        display: flex;
+    }
+    
+    li {
+        margin: 0 0;
+    }
+    
+    @media(max-width: 450px) {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
 `;
 
 function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 
@@ -133,7 +251,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
         for (let p of pokemon)  {
             if (p.name === pokemonName.name) {
                 setP(p);
-                console.log("set p to " + p.name);
+                //console.log("set p to " + p.name);
                 break;
             }
         }
@@ -166,10 +284,20 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             <TypeList theme={theme} types={p.types} />           
             </StyledTypeContainer>
             
-            <StyledTypeContainer>
+            <StyledEvoContainer>
             <h2>Evolution:</h2>
             <EvoChain theme={theme} pokemon={p} allPokemon={pokemon} />           
-            </StyledTypeContainer>
+            </StyledEvoContainer>
+            
+            <StyledAbilityContainer>
+            <h2>Abilities:</h2>
+            <AbilityList theme={theme} abilities={p.abilities} />           
+            </StyledAbilityContainer>
+            
+            <StyledMoveContainer>
+            <h2>Moves:</h2>
+            <MoveList theme={theme} moves={p.moves} />           
+            </StyledMoveContainer>
             
             </StyledDescription>
 

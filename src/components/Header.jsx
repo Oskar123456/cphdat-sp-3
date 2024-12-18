@@ -10,11 +10,13 @@ const StyledUl = styled.ul`
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    gap: 1rem;
+    gap: 0.3rem;
     & li a {
-        color: ${props => props.theme.poke_red};
-        background-color: ${props => props.theme.poke_white};
-        box-shadow: 0px 0px 1rem 1rem ${props => props.theme.poke_white};
+        color: ${props => props.theme.poke_black};
+        background-color: ${props => props.theme.poke_gray};
+        border: 0.2rem solid ${props => props.theme.poke_black};
+        border-radius: 0.4rem;
+        padding: 0.4rem;
     }
     @media(max-width: 580px) {
         & li a {
@@ -29,7 +31,7 @@ const StyledUl = styled.ul`
     }
     @media(max-width: 420px) {
         & li a {
-            font-size: 0.4rem;
+            font-size: 0.5rem;
         }
     }
 `;
@@ -46,7 +48,9 @@ const StyledDiva = styled.div`
 
     h1 {
         background-color: ${props => props.theme.poke_white};
-        box-shadow: 0px 0px 2rem 2rem ${props => props.theme.poke_white};
+        border: 0.2rem solid ${props => props.theme.poke_black};
+        border-radius: 0.8rem;
+        padding: 0.8rem;
     }
 
     @media(max-width: 580px) {
@@ -58,6 +62,9 @@ const StyledDiva = styled.div`
     @media(max-width: 480px) {
         h1 {
             font-size: 1.2rem;
+        }
+        & img {
+            width: 5rem;
         }
     }
     

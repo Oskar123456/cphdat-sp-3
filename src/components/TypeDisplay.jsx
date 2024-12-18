@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
-import { habitatImageLink } from "../js/PokeUtils.js";
+import { habitatImageLink, typeImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from "./PokemonImgDiv.jsx";
 import TypeList from './TypeList.jsx'
 import EvoChain from './EvoChain.jsx'
@@ -156,7 +156,7 @@ function TypeDisplay({currentUser, setCurrentUser, pokemon, habitats, types, the
         <>
             <StyledLeft>
             
-            <StyledImgDiv src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fart.pixilart.com%2F97b6697efc0daa9.png&f=1&nofb=1&ipt=92a2097eb9191551a5c1123f993eccacb261b66ff8857eb1253379105f335a20&ipo=images" />
+            <StyledImgDiv src={typeImageLink(t)} />
             
             </StyledLeft>
             

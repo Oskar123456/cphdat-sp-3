@@ -70,11 +70,11 @@ function EvoChain({pokemon, allPokemon, theme}){
         while ((p_current = findByName(p_current.evolve_to)))
             evo_chain.push(p_current);
 
-        console.log(evo_chain);
+        //console.log(evo_chain);
 
         let lis = evo_chain.map(p => {
-            console.log(p.name);
-            console.log(pokemon.name);
+            //console.log(p.name);
+            //console.log(pokemon.name);
             return ( <StyledLink key={crypto.randomUUID()}>
                 <Link className={p.name === pokemon.name ? "matched" : ""} to={"/pokedex/pokemon/" + p.name}>{capitalizeWord(p.name)}</Link>
                 </StyledLink>)

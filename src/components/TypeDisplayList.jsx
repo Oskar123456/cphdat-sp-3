@@ -128,7 +128,7 @@ function TypeDisplayList({currentUser, setCurrentUser, pokemon, habitats, types,
         <StyledDiv >
             <StyledLeft>
             
-            <StyledImgDiv src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fart.pixilart.com%2F97b6697efc0daa9.png&f=1&nofb=1&ipt=92a2097eb9191551a5c1123f993eccacb261b66ff8857eb1253379105f335a20&ipo=images" />
+            <StyledImgDiv src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Fi%2F8a338ef9-a14e-4c93-989b-b510d7b9bad7%2Fdedsu40-c80a23d1-3179-4a89-8f1f-a1599b806335.png&f=1&nofb=1&ipt=935c37765df7543c88ec828b17f543c8304d4abfe74ab56fae4795b0d4cc3208&ipo=images" />
             
             </StyledLeft>
             

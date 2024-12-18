@@ -58,7 +58,7 @@ const StyledTextInput = styled.div`
     gap: 0.5rem;
     align-items: center;
     & div {
-    background-color: ${props => props.theme.white};
+        background-color: ${props => props.theme.white};
         display: flex;
         gap: 0.5rem;
         padding-left: 0.3rem;
@@ -73,6 +73,7 @@ const StyledTextInput = styled.div`
         }
         
         & input {
+            background-color: ${props => props.theme.white};
             height: 90%;
             border: none;
             caret-color: ${props => props.theme.poke_black};
@@ -115,17 +116,17 @@ const StyledSearchFilters = styled.div`
     
     & img {
         height: 1.2rem;
-        width: 1.4rem;
+        width: 1.2rem;
     }
         
     .search-filter-pokeball {
-      transform: rotate(0deg);
-      transition: 0.1s linear;
+        transform: rotate(0deg);
+        transition: 0.1s linear;
     }
 
     .search-filter-pokeball.open {
-      transform: rotate(90deg);
-      transition: 0.1s linear;
+        transform: rotate(90deg);
+        transition: 0.1s linear;
     }
 `;
 
@@ -294,8 +295,8 @@ const StyledSearchFilterSelectionContainer = styled.div`
 
 function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, theme}) {
 
-    const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zkAzJ6tsBorjt0W613AbwAHaHa%26pid%3DApi&f=1&ipt=cedf55d33c90422aa55cccd31464f32af8e892be267a8e0777468532923c5683&ipo=images";
-    const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Fi%2F4b14c981-e3c8-4be0-89fd-ee3e41ce84b1%2Fd9rc284-605c99d0-4da6-4054-ad5a-34547bf3cd8a.png%2Fv1%2Ffill%2Fw_979%2Ch_816%2Cq_70%2Cstrp%2Fpokeball_black_icon_by_ryuu_orochi_d9rc284-pre.jpg&f=1&nofb=1&ipt=b43864bfa95b32f95cb4c18f2f74f91016ebc78903919409b762202e8f1ed95d&ipo=images";
+    const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fsearch-icon-free%2Fsearch-icon-free-2.jpg&f=1&nofb=1&ipt=1a94f787c773e059531231f767efc1759ac05ddda228f902a361dc37d37ac91c&ipo=images";
+    const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fpokeball-icon-png%2Fpokeball-icon-png-2.jpg&f=1&nofb=1&ipt=98102c2fa13e3c57fd697e8ad1518c8ab473a23c21ba33ae640888a4c2cb2ae5&ipo=images";
 
     const [description, setDescription] = useState('');
     const [pokeGrid, setPokeGrid] = useState();
@@ -333,7 +334,7 @@ function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, 
         for (let p of p_list) {
             let habitat_name = p.habitat.name.replace("-", "_");
             let ent = (
-                <Link to={'/pokedex/pokemon/' + p.name}>
+                <Link key={crypto.randomUUID()} to={'/pokedex/pokemon/' + p.name}>
                 <StyledPokemonCard key={crypto.randomUUID()} > 
                 <PokemonImgDiv pokemon={p} />
                 <p>{"#" + ("000" + p.id).slice(-3)}</p>

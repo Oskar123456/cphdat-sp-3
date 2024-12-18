@@ -29,14 +29,19 @@ function App()
     const url_all_type = "https://exam.obhnothing.dk/api/pokemon/type";
     
     const [currentUser, setCurrentUser] = useState({ loggedIn: false })
-    const [theme, setTheme] = useState({})
+    const [theme, setTheme] = useState(Themes[0])
     const [pokemon, setPokemon] = useState([]);
     const [habitats, setHabitats] = useState([])
     const [types, setTypes] = useState([])
+    const [themeNr, setThemeNr] = useState(0)
+
+    function toggleTheme() {
+        console.log(themeNr);
+        setThemeNr((themeNr + 1) % 2);
+        setTheme(Themes[(themeNr + 1) % 2]);
+    }
 
     useEffect(() => {
-        setTheme(Themes[0]);
-        
         fetch(url_all_pokemon).then(r => {
             return r.json();
         }).then(j => {
@@ -65,7 +70,7 @@ function App()
     return (
         <BrowserRouter basename="/">
         <Routes>
-        <Route path="/" element={<Layout currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
+        <Route path="/" element={<Layout theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
             errorElement={<ErrorPage />}>
         <Route index element={<Home/>} 
             errorElement={<ErrorPage />}/>
@@ -74,7 +79,7 @@ function App()
         <Route path="/apidocs" element={<ApiDocs/>} />
         <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
             errorElement={<ErrorPage />} />
-        <Route path="/pokedex" element={<Pokedex pokemon={pokemon} types={types} habitats={habitats} theme={theme} />} 
+        <Route path="/pokedex" element={<Pokedex theme={theme} themes={Themes} toggleTheme={toggleTheme} pokemon={pokemon} types={types} habitats={habitats}/>} 
             errorElement={<ErrorPage />}>
         <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
             errorElement={<ErrorPage />}/>

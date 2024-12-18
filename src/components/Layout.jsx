@@ -17,7 +17,7 @@ const StyledDivLower = styled.div`
 `;
 
 const StyledOutlet = styled.div`
-        width: 100%;
+    width: 100%;
     @media (max-width: 768px) {
         width: 100%;
     }
@@ -27,22 +27,20 @@ const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 80%;
+    width: 75%;
+    margin-bottom: 2rem;
     @media (max-width: 768px) {
         width: 95%;
     }
 `;
 
-function Layout({currentUser, setCurrentUser}) {
+function Layout({currentUser, setCurrentUser, theme}) {
 
-    const [theme, setTheme] = useState("")
-    
     useEffect(() => {
-        setTheme(Themes[0]);
-    }, [])
+    }, [theme])
 
     return (
-    <ThemeProvider theme={Themes[0]}>
+    <ThemeProvider theme={theme}>
       <StyledContainer className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <ShowPath currentUser={currentUser} setCurrentUser={setCurrentUser} />

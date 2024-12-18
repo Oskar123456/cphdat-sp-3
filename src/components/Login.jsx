@@ -51,6 +51,7 @@ const StyledTextInput = styled.div`
     }
     
     & input {
+        background-color: ${props => props.theme.white};
         height: 90%;
         border: none;
         caret-color: ${props => props.theme.poke_black};

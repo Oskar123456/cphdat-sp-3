@@ -1,4 +1,14 @@
+html {
+    background-size: contain;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F133386.jpg&f=1&nofb=1&ipt=9af76c15c333d6175d20013748fffd9c5f35357011a36bc53ea0d3a90870de06&ipo=images");
+}
+html,body {
+    margin:0;
+    padding:0;
+    height:100%; /* needed for container min-height */
+}
 #root {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
 }

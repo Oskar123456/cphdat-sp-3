@@ -69,6 +69,7 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
     const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zkAzJ6tsBorjt0W613AbwAHaHa%26pid%3DApi&f=1&ipt=cedf55d33c90422aa55cccd31464f32af8e892be267a8e0777468532923c5683&ipo=images";
     const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages-wixmp-ed30a86b8c4ca887773594c2.wixmp.com%2Fi%2F4b14c981-e3c8-4be0-89fd-ee3e41ce84b1%2Fd9rc284-605c99d0-4da6-4054-ad5a-34547bf3cd8a.png%2Fv1%2Ffill%2Fw_979%2Ch_816%2Cq_70%2Cstrp%2Fpokeball_black_icon_by_ryuu_orochi_d9rc284-pre.jpg&f=1&nofb=1&ipt=b43864bfa95b32f95cb4c18f2f74f91016ebc78903919409b762202e8f1ed95d&ipo=images";
     const pokemon_poster_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fpokemon%2Fpokemon_PNG98.png&f=1&nofb=1&ipt=1e250c147aa898bf9d9e271d1a39b6805efe70a70e9448d13eeb17aad5bcbe6e&ipo=images";
+    const pokemon_dialogcontainer_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F03%2F75%2F8b%2F03758b14d765704faca53a1261a12650.png&f=1&nofb=1&ipt=6b26cbd4943cb9ebd9bd3e70bd3c412f04abe97b5aa0970c04dfed6c77e50693&ipo=images";
 
     function buttonCrsClickCB(e) {
     }

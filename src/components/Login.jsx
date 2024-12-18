@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
     form {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
         > * {
             margin-bottom: 0.4rem;
         }
@@ -29,7 +29,8 @@ const StyledDiv = styled.div`
 const StyledTextInput = styled.div`
     display: flex;
     gap: 0.5rem;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     background-color: ${props => props.theme.white};
     display: flex;
     gap: 0.5rem;
@@ -68,7 +69,7 @@ const StyledTextInput = styled.div`
 const StyledButtons = styled.div`
     display: flex;
     > * {
-        margin-left: 0.4rem;
+        margin-right: 0.4rem;
         &:hover {
             border: 0.2rem solid ${props => props.theme.poke_red};
         }

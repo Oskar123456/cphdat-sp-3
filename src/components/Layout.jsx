@@ -29,7 +29,7 @@ const StyledContainer = styled.div`
     gap: 2rem;
     width: 80%;
     @media (max-width: 768px) {
-        width: 100%;
+        width: 95%;
     }
 `;
 

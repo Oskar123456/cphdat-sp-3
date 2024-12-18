@@ -99,6 +99,22 @@ const StyledDescription = styled.div`
     > * {
         margin: 0.1rem 0;
         padding: 0 0;
+        display: flex; 
+        align-items: center;
+        flex-wrap: wrap;
+
+        a {
+            margin-left: 0.1rem;
+        }
+    }
+    
+    @media(max-width: 580px) {
+        h1 { 
+            font-size: 0.8rem;
+        }
+        > * {
+            font-size: 0.6rem;
+        }
     }
 
     p {

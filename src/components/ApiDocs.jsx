@@ -4,6 +4,18 @@ import { Outlet } from "react-router-dom";
 import { fetchWithJwt } from '../js/Accounts.js';
 import { styled } from 'styled-components';
 
+const StyledContainer = styled.div`
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: ${props => props.theme.poke_red};
+    border-radius: 1rem;
+    border: 0.25rem solid ${props => props.theme.black};
+    & > * {
+    }
+`;
+
 const JsonObject = styled.div`
     font-family: "Source Code Pro", monospace;
     font-optical-sizing: auto;
@@ -124,6 +136,7 @@ function ApiDocs({currentUser})
     }, [])
 
     return (
+        <StyledContainer>
         <StyledDiv className="trips_table">
         <h1>API Doc</h1>
 
@@ -215,6 +228,7 @@ function ApiDocs({currentUser})
         </JsonObject>
         
         </StyledDiv>
+        </StyledContainer>
     ) 
 }
 

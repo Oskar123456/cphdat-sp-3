@@ -71,6 +71,7 @@ function App()
             errorElement={<ErrorPage />}/>
         <Route path="/home" element={<Home/>} 
             errorElement={<ErrorPage />} />
+        <Route path="/apidocs" element={<ApiDocs/>} />
         <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
             errorElement={<ErrorPage />} />
         <Route path="/pokedex" element={<Pokedex pokemon={pokemon} types={types} habitats={habitats} theme={theme} />} 
@@ -90,7 +91,6 @@ function App()
         <Route path="/pokedex/habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
             errorElement={<ErrorPage />} />}/>
         </Route>
-        <Route path="/apidocs" element={<ApiDocs/>} />
         <Route path="*" element={<ErrorPage />} />
         </Route>
         </Routes>

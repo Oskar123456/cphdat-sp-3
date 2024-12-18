@@ -17,12 +17,23 @@ const StyledDiv = styled.div`
     & a {
         color: black;
     }
+    @media(max-width: 580px) {
+        & a {
+            font-size: 0.8rem;
+        }
+    }
 `;
 
 const StyledPath = styled.div`
     & a {
         color: black;
         margin-right: 0.4rem;
+    }
+    
+    @media(max-width: 580px) {
+        & a {
+            font-size: 0.8rem;
+        }
     }
 `;
 

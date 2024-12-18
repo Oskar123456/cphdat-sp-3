@@ -14,11 +14,12 @@ import EvoChain from './EvoChain.jsx'
 import StatChart from './StatChart.jsx'
 
 const StyledDiv = styled.div`
+    display: flex;
+    flex-direction: column;
     font-family: "VT323", serif;
     font-weight: 600;
     font-style: normal;
     display: flex;
-    gap: 0.5rem;
     font-size: 0.8rem;
     width: 100%;
     border-radius: 0.5rem;
@@ -251,6 +252,16 @@ const StyledEvoContainer = styled.div`
     }
 `;
 
+const StyledBottom = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+`
+
+const StyledTop = styled.div`
+    display: flex;
+`
+
 function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 
 {
     const loc = useLocation();
@@ -273,11 +284,14 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
 
         {p ? (
         <>
+            <StyledTop>
+            
             <StyledLeft>
             
             <PokemonImgDiv pokemon={p} />
             
             <StatChart pokemon={p} theme={theme} allPokemon={pokemon} />
+            
             
             </StyledLeft>
             
@@ -299,6 +313,14 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             <h2>Evolution:</h2>
             <EvoChain theme={theme} pokemon={p} allPokemon={pokemon} />           
             </StyledEvoContainer>
+
+            </StyledDescription>
+
+            </StyledRight>
+            
+            </StyledTop>
+            
+            <StyledBottom>
             
             <StyledAbilityContainer>
             <h2>Abilities:</h2>
@@ -310,9 +332,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             <MoveList theme={theme} moves={p.moves} />           
             </StyledMoveContainer>
             
-            </StyledDescription>
-
-            </StyledRight>
+            </StyledBottom>
         </>
         ) : <h1>Loading...</h1>
         }

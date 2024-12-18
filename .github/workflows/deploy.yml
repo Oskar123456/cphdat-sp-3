@@ -35,7 +35,7 @@ jobs:
           # Define SSH connection info
           SSH_USER="serv"
           DO_DROPLET_IP="157.245.73.150"
-          APP_NAME="trip_api"
+          APP_NAME="pokedex"
           REMOTE_PATH="/home/serv/deployment/site/$APP_NAME/"
 
           # Sync build output to the Droplet using rsync

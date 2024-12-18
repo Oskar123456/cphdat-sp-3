@@ -73,7 +73,7 @@ const StyledTextInput = styled.div`
         }
         
         & input {
-            height: 95%;
+            height: 90%;
             border: none;
             caret-color: ${props => props.theme.poke_black};
             font-family: "VT323", serif;

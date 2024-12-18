@@ -130,18 +130,11 @@ const StyledSearchFilters = styled.div`
 `;
 
 const StyledPokedex = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.5rem;
-    @media (min-width: 1000px) {
-        grid-template-columns: repeat(8, minmax(0, 1fr));
-    }
-    @media (max-width: 520px) {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    @media (max-width: 415px) {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    
+    display: flex;
+    flex-wrap: wrap;
+    
     ul {
         display: flex;
         padding: 0;

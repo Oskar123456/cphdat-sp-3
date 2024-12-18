@@ -135,7 +135,15 @@ const StyledPokedex = styled.div`
     
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    
+    @media (max-width: 1240px) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    @media (max-width: 940px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
     
     @media (max-width: 540px) {
         grid-template-columns: repeat(3, 1fr);
@@ -143,6 +151,10 @@ const StyledPokedex = styled.div`
     
     @media (max-width: 400px) {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 380px) {
+        grid-template-columns: repeat(1, 1fr);
     }
     
     ul {

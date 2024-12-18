@@ -238,6 +238,17 @@ const StyledEvoContainer = styled.div`
         align-items: flex-start;
         flex-direction: column;
     }
+    
+    @media (max-width: 380px) {
+        ul {
+            flex-direction: column;
+            margin: 0 0;
+            padding: 0 0;
+        }
+        li {
+            margin: 0 0;
+        }
+    }
 `;
 
 function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 

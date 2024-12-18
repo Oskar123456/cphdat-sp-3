@@ -19,7 +19,7 @@ function PokemonImgDiv({pokemon})
     return (
         <Styled style={{
             backgroundImage: `url(${habitatImageLink(pokemon.habitat)})`,
-            backgroundSize: "100%", backgroundSize: "cover", borderRadius: "0.4rem"}}>
+           backgroundSize: "100%", backgroundSize: "cover", borderRadius: "0.4rem"}}>
         <img src={pokemon.sprites.front_default} />
         </Styled>
     )

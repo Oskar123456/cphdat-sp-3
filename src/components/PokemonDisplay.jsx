@@ -20,13 +20,14 @@ const StyledDiv = styled.div`
     font-weight: 600;
     font-style: normal;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     width: 100%;
     border-radius: 0.5rem;
     border: 0.25rem solid ${props => props.theme.black};
     background-color: ${props => props.theme.poke_white};
     @media (max-width: 768px) {
         width: 100%;
+        font-size: 0.8rem;
     }
 `;
 

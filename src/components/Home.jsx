@@ -59,9 +59,7 @@ function Home() {
         <StyledContainer>
         <StyledDiv className="article">
         <h1>About</h1>
-        <p>An index of pokemon from a deployed database fueled by&nbsp; 
-        <a href="https://pokeapi.co">pokeapi.co</a> with detailed 
-        stats styled in a way that matches the pokemon theme</p>
+        <p>An index of pokemon with detailed stats and more</p> 
         </StyledDiv>
         </StyledContainer>
     ) 

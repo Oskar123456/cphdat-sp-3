@@ -22,6 +22,11 @@ const StyledDiv = styled.div`
             font-size: 0.8rem;
         }
     }
+    @media(max-width: 480px) {
+        & a {
+            font-size: 0.6rem;
+        }
+    }
 `;
 
 const StyledPath = styled.div`
@@ -29,21 +34,12 @@ const StyledPath = styled.div`
         color: black;
         margin-right: 0.4rem;
     }
-    
-    @media(max-width: 580px) {
-        & a {
-            font-size: 0.8rem;
-        }
-    }
 `;
 
 const StyledLogout = styled.div`
     display: flex;
     align-items: center;
-    > * {
-        margin-left: 0.3rem;
-        max-height: 2rem;
-    }
+    gap: 0.2rem;
     button {
         border-radius: 0.4rem;
         background-color: ${props => props.theme.poke_red};
@@ -61,7 +57,8 @@ function ShowPath({currentUser, setCurrentUser}) {
     useEffect(() => {
         acc = '';
         setPath(location.pathname);
-    }, [location])
+        console.log(currentUser.username);
+    }, [location, currentUser])
 
     return (
         <StyledDiv className="show_path">
@@ -71,7 +68,7 @@ function ShowPath({currentUser, setCurrentUser}) {
                 if (sp.length > 0) {
                     acc += '/' + sp;
                     return (<Link key={crypto.randomUUID()} className="path_substr" 
-                        to={acc}>{'→ ' + sp}</Link>)
+                        to={acc}>{'/' + sp}</Link>)
                 }
             }                
             ) : (
@@ -81,7 +78,9 @@ function ShowPath({currentUser, setCurrentUser}) {
         }
         </StyledPath>
         { currentUser.loggedIn ?
-            (<StyledLogout><p>logged in as {currentUser.username}</p>
+            (<StyledLogout><p>
+                {currentUser.username.substring(0, 10) + ((currentUser.username.length > 10) ? "..." : "")}
+                </p>
              <Logout setCurrentUser={setCurrentUser}/></StyledLogout>) 
             :
             (<Link to='/login'>log in</Link>)

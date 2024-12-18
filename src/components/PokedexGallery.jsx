@@ -133,8 +133,17 @@ const StyledSearchFilters = styled.div`
 const StyledPokedex = styled.div`
     gap: 0.5rem;
     
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+    @media (max-width: 540px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 400px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
     
     ul {
         display: flex;
@@ -159,11 +168,16 @@ const StyledPokemonCard = styled.div`
     align-items: flex-start;
     justify-content: flex-end;
 
-    max-width: fit-content;
-
     > * {
         margin: 0 0;
         gap: 0;
+        width: 100%;
+        height: 100%;
+        
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     ul {
@@ -304,28 +318,14 @@ function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, 
     const [filterHabitats, setFilterHabitats] = useState([])
     const [filterTypes, setFilterTypes] = useState([])
     
-    /*
-    <div className="pokemon-card-type-container">
-    {
-        p.types.sort((a, b) => a.name > b.name).map(t => {
-            return ( <StyledTypeName style={colorCodeType(theme, t)} key={crypto.randomUUID()}>
-                {capitalizeWord(t.name)}</StyledTypeName>)
-        })
-    }
-    </div>
-     * */
-
     function makePokeGrid(p_list, type_filter)
     {
         if (!p_list) return <h1>No Data for makePokeGrid</h1>;
 
         if (type_filter && type_filter.length > 0) {
-            console.log("in makePokeGrid: " + JSON.stringify(type_filter.map(t => t.name)));
-            console.log(p_list.length);
             p_list = p_list.filter(p => p.types.map(t => t.name)
                 .filter(n => !type_filter.map(t => t.name).includes(n))
                 .length > 0);
-            console.log(p_list.length);
         }
 
         p_list = p_list.sort((a,b) => a.id > b.id);

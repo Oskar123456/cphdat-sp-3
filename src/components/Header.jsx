@@ -21,17 +21,20 @@ const StyledUl = styled.ul`
     @media(max-width: 580px) {
         & li a {
             font-size: 0.8rem;
+            border: 0.15rem solid ${props => props.theme.poke_black};
         }
     }
     
     @media(max-width: 480px) {
         & li a {
             font-size: 0.6rem;
+            border: 0.12rem solid ${props => props.theme.poke_black};
         }
     }
     @media(max-width: 420px) {
         & li a {
-            font-size: 0.5rem;
+            font-size: 0.4rem;
+            border: 0.10rem solid ${props => props.theme.poke_black};
         }
     }
 `;
@@ -72,6 +75,9 @@ const StyledDiva = styled.div`
         h1 {
             font-size: 0.8rem;
         }
+        & img {
+            width: 4rem;
+        }
     }
 `;
 
@@ -81,14 +87,11 @@ function Header({currentUser, setCurrentUser}) {
         <StyledDiva className="panel">
         <a href="/"> <img src={Logo}/> </a>
         <h1>Pokedex</h1> 
-        <div className='sidebar'>
         <StyledUl>
         <li> <Link to='/home'>About</Link> </li>
         <li> <Link to='/pokedex'>Pokedex</Link> </li>
         <li> <Link to='/apidocs'>ApiDocs</Link> </li>
         </StyledUl>
-        </div>
-
         </StyledDiva>
     )
 

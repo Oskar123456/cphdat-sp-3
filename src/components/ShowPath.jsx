@@ -3,13 +3,17 @@ import { Outlet, useLocation } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 
+import Logout from './Logout.jsx'
+
 const StyledDiv = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: ${props => props.theme.poke_gray};
     border: 0.2rem solid ${props => props.theme.poke_black};
     border-radius: 1rem;
     padding: 0.5rem;
+    max-height: 2rem;
     & a {
         color: black;
     }
@@ -19,6 +23,21 @@ const StyledPath = styled.div`
     & a {
         color: black;
         margin-right: 0.4rem;
+    }
+`;
+
+const StyledLogout = styled.div`
+    display: flex;
+    align-items: center;
+    > * {
+        margin-left: 0.3rem;
+        max-height: 2rem;
+    }
+    button {
+        border-radius: 0.4rem;
+        background-color: ${props => props.theme.poke_red};
+        border: 0.2rem solid ${props => props.theme.poke_black};
+        width: fit-content;
     }
 `;
 
@@ -51,8 +70,8 @@ function ShowPath({currentUser, setCurrentUser}) {
         }
         </StyledPath>
         { currentUser.loggedIn ?
-            (<div><p>{currentUser.username} ({currentUser.roles})</p>
-             <Logout setCurrentUser={setCurrentUser}/></div>) 
+            (<StyledLogout><p>logged in as {currentUser.username}</p>
+             <Logout setCurrentUser={setCurrentUser}/></StyledLogout>) 
             :
             (<Link to='/login'>log in</Link>)
         }

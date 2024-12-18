@@ -11,6 +11,7 @@ import Login from './components/Login.jsx'
 import ApiDocs from './components/ApiDocs.jsx'
 import Pokedex from './components/Pokedex.jsx'
 import PokedexIndex from './components/PokedexIndex.jsx'
+import PokedexGallery from './components/PokedexGallery.jsx'
 import PokemonDisplay from './components/PokemonDisplay.jsx'
 import TypeDisplayList from './components/TypeDisplayList.jsx'
 import TypeDisplay from './components/TypeDisplay.jsx'
@@ -70,11 +71,13 @@ function App()
             errorElement={<ErrorPage />}/>
         <Route path="/home" element={<Home/>} 
             errorElement={<ErrorPage />} />
+        <Route path="/login" element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
+            errorElement={<ErrorPage />} />
         <Route path="/pokedex" element={<Pokedex pokemon={pokemon} types={types} habitats={habitats} theme={theme} />} 
             errorElement={<ErrorPage />}>
-        <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} theme={theme} />} 
+        <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
             errorElement={<ErrorPage />}/>
-        <Route path="/pokedex/pokemon" element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
+        <Route path="/pokedex/pokemon" element={<PokedexGallery pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
             errorElement={<ErrorPage />} />}/>
         <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme}/>} 
             errorElement={<ErrorPage />}/>

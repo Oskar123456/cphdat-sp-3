@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useContext } from "react";
 import { styled, ThemeProvider } from "styled-components";
-import { Outlet, useLocation, useParams, useOutletContext } from "react-router-dom";
+import { Outlet, useLocation, useParams, useNavigate } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
@@ -111,6 +111,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
     const loc = useLocation();
     const pokemonName = useParams();
     const [p, setP] = useState()
+    const nav_back = useNavigate();
 
     useEffect(() => {
         for (let p of pokemon)  {

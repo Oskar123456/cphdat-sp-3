@@ -6,7 +6,7 @@ const endpt_login = "/auth/login";
 let user_current = {};
 let logged_in = false;
 
-function login(uname, upassword, uset) 
+function login(uname, upassword, uset, errorCallback) 
 {
     fetch("https://exam.obhnothing.dk/api/auth/login", {
         method: "POST",
@@ -19,11 +19,17 @@ function login(uname, upassword, uset)
             username: uname,
             password: upassword
         })
-    })
+        })
         .then((response) => { 
+            if (!(response.status === 200)) {
+                errorCallback("failed to login");
+                return;
+            }
             return response.json()
         })
         .then(jwt => {
+            if (!jwt)
+                return;
             let u = {};
             let s = jwt.token.split('.');
             let claims = JSON.parse(atob(s[1]));
@@ -31,7 +37,7 @@ function login(uname, upassword, uset)
             u['roles'] = claims['roles'];
             u['jwt'] = jwt.token;
             u['loggedIn'] = true;
-            console.log("logged in as: " + JSON.stringify(u));
+            console.log("logged in as: " + JSON.stringify(u) + " with token: " + user_current.jwt);
             uset(u);
             user_current = u;
         })
@@ -39,11 +45,64 @@ function login(uname, upassword, uset)
             if (err.fullError) {
                 err.fullError.then(ferr => {
                     console.log(ferr);
+                    errorCallback(ferr);
                     user_current = {};
                 })
             }
-            else
+            else {
                 console.log(err);
+                errorCallback(err);
+            }
+        });
+}
+
+function signup(uname, upassword, uset, errorCallback) 
+{
+    fetch("https://exam.obhnothing.dk/api/auth/register", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+            username: uname,
+            password: upassword
+        })
+        })
+        .then((response) => { 
+            if (!(response.status === 201)) {
+                errorCallback("could not create user");
+                return;
+            }
+            return response.json()
+        })
+        .then(jwt => {
+            if (!jwt)
+                return;
+            let u = {};
+            let s = jwt.token.split('.');
+            let claims = JSON.parse(atob(s[1]));
+            u['username'] = claims['username'];
+            u['roles'] = claims['roles'];
+            u['jwt'] = jwt.token;
+            u['loggedIn'] = true;
+            console.log("signed up: " + JSON.stringify(u) + " with token: " + user_current.jwt);
+            uset(u);
+            user_current = u;
+        })
+        .catch(err => {
+            if (err.fullError) {
+                err.fullError.then(ferr => {
+                    console.log(ferr);
+                    errorCallback(ferr);
+                    user_current = {};
+                })
+            }
+            else {
+                console.log(err);
+                errorCallback(err);
+            }
         });
 }
 
@@ -90,4 +149,4 @@ function fetchWithJwt(url, callback, errorCallback, method, body)
     })
 }
 
-export { login, logout, getUser, fetchWithJwt }
+export { login, logout, signup, getUser, fetchWithJwt }

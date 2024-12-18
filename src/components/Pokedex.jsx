@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext, useContext} from "react"
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet, useOutletContext, useNavigate } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
@@ -20,27 +20,12 @@ const StyledContainer = styled.div`
 function Pokedex()
 {
 
-    const theme = useOutletContext();
-    
-    const url_all_pokemon = "http://localhost:9999/api/pokemon";
-    const url_all_habitat = "http://localhost:9999/api/pokemon/habitat";
-    const url_all_type = "http://localhost:9999/api/pokemon/type";
-    
-    const [pokedexOutletState, setPokedexOutletState] = useState({})
-
-    function addToState(name, obj) {
-        let o = pokedexOutletState;
-        o[name] = obj;
-        setPokedexOutletState(o);
-        console.log(pokedexOutletState);
-    }
-    
     useEffect(() => {
-    }, [theme]);
+    }, []);
 
     return (
         <StyledContainer>
-        <Outlet context={pokedexOutletState}/>
+        <Outlet />
         </StyledContainer>
     )
     

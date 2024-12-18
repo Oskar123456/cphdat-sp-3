@@ -98,7 +98,7 @@ const Themes =
         red: "#EA4656",
         poke_gray: "#CACACA",
         poke_shadow: "#C1B7B7",
-        poke_white: "#646464",
+        poke_white: "#A99594",
         poke_black: "#423B3B",
         poke_grass: "#7cfc00",
         poke_poison: "#9447fe",

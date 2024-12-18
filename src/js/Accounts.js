@@ -1,6 +1,6 @@
 import { HttpRequestAsJson } from "./HttpRequest.js"
 
-const base_url = "http://localhost:9999/api";
+const base_url = "https://exam.obhnothing.dk/api";
 const endpt_login = "/auth/login";
 
 let user_current = {};

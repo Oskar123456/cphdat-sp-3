@@ -24,6 +24,15 @@ const StyledDiv = styled.div`
             width: fit-content;
         }
     }
+    
+    h2 {
+    }
+
+    a {
+        margin: 0 0;
+        padding: 0;
+    }
+    
 `;
 
 const StyledTextInput = styled.div`
@@ -110,7 +119,7 @@ function Login({currentUser, setCurrentUser})
 
     return (
         <StyledDiv>
-        <h1>Log in</h1>
+        <h1>Log in to access your collection!</h1>
         { (!currentUser || !currentUser.loggedIn) ? (
             <form className="login_form" id="signup-form">
             <StyledTextInput>
@@ -128,7 +137,10 @@ function Login({currentUser, setCurrentUser})
             {error && <p>{error.toString()}</p>}
             </form> 
         ) : (currentUser && currentUser.loggedIn) ? (
+            <>
             <h2>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username.length }</h2>
+            <h2><Link to={"/pokedex/mycollection"}>🞂 My collection</Link></h2>
+            </>
         ) : (
             <h2>??</h2>
         )

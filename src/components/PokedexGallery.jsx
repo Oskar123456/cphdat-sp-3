@@ -9,6 +9,7 @@ import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from './PokemonImgDiv.jsx'
+import PokemonCard from './PokemonCard.jsx'
 
 const StyledDiv = styled.div`
     font-family: "VT323", serif;
@@ -57,6 +58,26 @@ const StyledTextInput = styled.div`
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    
+    :hover {
+        background-color: ${props => props.theme.poke_gray};
+        border: 0.2rem solid ${props => props.theme.poke_red};
+
+        img {
+            border: none;
+        }
+        
+        input {
+        background-color: ${props => props.theme.poke_gray};
+            border: none;
+        }
+        
+        input:focus {
+            border: none;
+            outline: none;
+        }
+    }
+    
     & div {
         background-color: ${props => props.theme.white};
         display: flex;
@@ -96,6 +117,14 @@ const StyledSearchFilters = styled.div`
     gap: 0.5rem;
     align-items: center;
     
+    :hover {
+        background-color: ${props => props.theme.poke_gray};
+    }
+    :active {
+        background-color: ${props => props.theme.poke_red};
+    }
+
+    
     & button {
         font-family: "VT323", serif;
         font-weight: 600;
@@ -108,7 +137,7 @@ const StyledSearchFilters = styled.div`
         border-radius: 0.5rem;
         border: 0.2rem solid ${props => props.theme.poke_gray};
         background-color: ${props => props.theme.white};
-
+        
         & p {
             padding-top: 0.1rem;
         }
@@ -324,6 +353,33 @@ const StyledSearchFilterSelectionContainer = styled.div`
     
 `;
 
+const StyledLoginTip = styled.div`
+    font-size: 1.0rem;
+    font-weight: 400;
+    a {
+        font: inherit;
+        color: ${props => props.theme.poke_black};
+        border-radius: 0.2rem;
+        padding: 0.1rem;
+    }
+    @media (max-width: 768px) {
+        font-size: 0.8rem;
+    }
+    @media (max-width: 600px) {
+        font-size: 0.6rem;
+    }
+    @media (max-width: 500px) {
+        font-size: 0.4rem;
+    }
+    
+    a:hover {
+        background-color: ${props => props.theme.poke_gray};
+    }
+    a:active {
+        background-color: ${props => props.theme.poke_red};
+    }
+`
+
 function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemon, habitats, types, theme}) {
 
     const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fsearch-icon-free%2Fsearch-icon-free-2.jpg&f=1&nofb=1&ipt=1a94f787c773e059531231f767efc1759ac05ddda228f902a361dc37d37ac91c&ipo=images";
@@ -351,16 +407,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         for (let p of p_list) {
             let owned = !(currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
             let habitat_name = p.habitat.name.replace("-", "_");
-            let ent = (
-                <Link key={crypto.randomUUID()} to={'/pokedex/pokemon/' + p.name}>
-                <StyledPokemonCard className={owned ? "owned" : "unowned"} key={crypto.randomUUID()} > 
-                <PokemonImgDiv pokemon={p} />
-                <p>{"#" + ("000" + p.id).slice(-3)}</p>
-                <p className="pokemon-card-title">{!owned ? capitalizeWord(p.name) : "???"}</p>
-                {!owned ? <TypeList theme={theme} types={p.types} /> : <p>"???"</p>}
-                </StyledPokemonCard>
-                </Link>
-            );
+            let ent = <PokemonCard key={crypto.randomUUID()} owned={owned} theme={theme}  p={p}/>
             grid.push(ent);
         }
         setPokeGrid(grid);
@@ -411,7 +458,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
     }
 
     function searchInputCB(e) {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         let pokemon_filtered = pokemon.filter(p => p.name.toLowerCase().includes(e.target.value));
         makePokeGrid(pokemon_filtered);
     }
@@ -423,7 +470,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
     useEffect(() => {
         makePokeGrid(pokemon);
-    }, [pokemon, habitats, types, theme, currentUserPokemon])
+    }, [pokemon, habitats, types, theme, currentUserPokemon, currentUser])
 
 
     return (
@@ -453,6 +500,14 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         
             </StyledSearchFilters>
         </StyledPanel>
+        
+        <StyledLoginTip>
+        {(currentUser && currentUser.loggedIn) ? (
+            <h2><Link to={"/pokedex/mycollection"}>My collection</Link></h2>
+        ) : (
+            <h2><Link to={"/login"}>Log in</Link> to discover POKèMON and access your collection!</h2>
+        )}
+        </StyledLoginTip>
 
         <StyledSearchFilterSelectionContainer  style={{display: "none"}} id="search-filter-selection-container">
         <div className="search-filter-selection" id="search-filter-selection">

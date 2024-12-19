@@ -75,7 +75,7 @@ function App()
         
             <Route path="/pokedex/mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
                 errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/pokemon" element={<PokedexGallery currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
+            <Route path="/pokedex/pokemon" element={<PokedexGallery currentUser={currentUser} currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} habitats={habitats} theme={theme} 
                 errorElement={<ErrorPage />} />}/>
             <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} types={types} habitats={habitats} theme={theme}/>} 
                 errorElement={<ErrorPage />}/>

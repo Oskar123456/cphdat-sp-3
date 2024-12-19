@@ -405,7 +405,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         const grid = [];
         for (let p of p_list) {
-            let owned = !(currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
+            let owned = currentUserPokemon && !(currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
             let habitat_name = p.habitat.name.replace("-", "_");
             let ent = <PokemonCard key={crypto.randomUUID()} owned={owned} theme={theme}  p={p}/>
             grid.push(ent);

@@ -116,7 +116,10 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
     }, [currentUser, currentUserPokemon])
 
     function addPack(p) {
-        setCurrentUserPokemon(currentUserPokemon.concat(p));
+        if (currentUserPokemon)
+            setCurrentUserPokemon(currentUserPokemon.concat(p));
+        else
+            setCurrentUserPokemon(p);
         setCardPack(p);
     }
     
@@ -187,10 +190,14 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                     renderPack()
                 )}
                 <h2>Statistics</h2>
-                {generalStats()}
-                <StyledStats>
-                <div id="chart_by_type" />
-                </StyledStats>
+                {currentUserPokemon ? (
+                    {generalStats()}
+                    <StyledStats>
+                    <div id="chart_by_type" />
+                    </StyledStats>
+                ) : (
+                    <h2>Loading collection</h2>
+                )}
                 </>
             ) : (
                 <h1>Not logged in</h1>

@@ -27,7 +27,7 @@ import './styles/App.css'
 function App() 
 {
     const [currentUser, setCurrentUser] = useState({ loggedIn: false })
-    const [currentUserPokemon, setCurrentUserPokemon] = useState([])
+    const [currentUserPokemon, setCurrentUserPokemon] = useState()
     const [theme, setTheme] = useState(Themes[0])
     const [pokemon, setPokemon] = useState([]);
     const [habitats, setHabitats] = useState([])

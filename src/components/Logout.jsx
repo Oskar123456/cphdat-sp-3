@@ -7,7 +7,7 @@ function Logout({setCurrentUser, setCurrentUserPokemon})
 
     function clickCB() {
         logout(setCurrentUser);
-        setCurrentUserPokemon([]);
+        setCurrentUserPokemon();
     }
     
     return ( <button onClick={clickCB}>log out</button> )

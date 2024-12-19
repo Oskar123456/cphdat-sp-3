@@ -335,12 +335,6 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
     const [filterHabitats, setFilterHabitats] = useState([])
     const [filterTypes, setFilterTypes] = useState([])
 
-    function isPokemonOwned(p) {
-        if (currentUserPokemon && currentUserPokemon.length > 0)
-            return (currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
-        return true;
-    }
-    
     function makePokeGrid(p_list, type_filter)
     {
         if (!p_list) return <h1>No Data for makePokeGrid</h1>;
@@ -355,9 +349,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         const grid = [];
         for (let p of p_list) {
-            let owned = false;
-            if (currentUserPokemon && currentUserPokemon.length > 0)
-                owned = (currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
+            let owned = !(currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
             let habitat_name = p.habitat.name.replace("-", "_");
             let ent = (
                 <Link key={crypto.randomUUID()} to={'/pokedex/pokemon/' + p.name}>
@@ -378,7 +370,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         let new_filter = filterTypes.filter(t2 => t2.name != t.name);
         if (new_filter.length === filterTypes.length)
             new_filter.push(t);
-        console.log(new_filter.map(t => t.name));
+        //console.log(new_filter.map(t => t.name));
         setFilterTypes(new_filter);
         makePokeGrid(pokemon, new_filter);
     }

@@ -191,10 +191,12 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                 )}
                 <h2>Statistics</h2>
                 {currentUserPokemon ? (
+                    <>
                     {generalStats()}
                     <StyledStats>
                     <div id="chart_by_type" />
                     </StyledStats>
+                    </>
                 ) : (
                     <h2>Loading collection</h2>
                 )}

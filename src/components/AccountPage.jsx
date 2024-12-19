@@ -116,7 +116,7 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
     }, [currentUser, currentUserPokemon])
 
     function addPack(p) {
-        setCurrentUserPokemon(currentUserPokemon.concat(currentUserPokemon, p));
+        setCurrentUserPokemon(currentUserPokemon.concat(p));
         setCardPack(p);
     }
     

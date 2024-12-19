@@ -1,3 +1,3 @@
 # Pokedex exam project 
 
-(link)[https://exam.obhnothing.dk]
+[link](https://exam.obhnothing.dk)

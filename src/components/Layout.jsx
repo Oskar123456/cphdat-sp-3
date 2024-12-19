@@ -34,7 +34,7 @@ const StyledContainer = styled.div`
     }
 `;
 
-function Layout({currentUser, setCurrentUser, theme}) {
+function Layout({currentUser, setCurrentUser, setCurrentUserPokemon, theme}) {
 
     useEffect(() => {
     }, [theme])
@@ -43,7 +43,7 @@ function Layout({currentUser, setCurrentUser, theme}) {
     <ThemeProvider theme={theme}>
       <StyledContainer className='container'>
         <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
-        <ShowPath currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <ShowPath currentUser={currentUser} setCurrentUser={setCurrentUser} setCurrentUserPokemon={setCurrentUserPokemon} />
         <StyledDivLower className='lower-part'>
           <StyledOutlet className='main-content'>
             <Outlet context={theme} />

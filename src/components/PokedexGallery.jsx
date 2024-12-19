@@ -137,6 +137,11 @@ const StyledPokedex = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     
+    .owned {
+        opacity: 0.2;
+    }
+
+    
     @media (max-width: 1240px) {
         grid-template-columns: repeat(6, 1fr);
     }
@@ -319,7 +324,7 @@ const StyledSearchFilterSelectionContainer = styled.div`
     
 `;
 
-function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, theme}) {
+function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemon, habitats, types, theme}) {
 
     const search_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fsearch-icon-free%2Fsearch-icon-free-2.jpg&f=1&nofb=1&ipt=1a94f787c773e059531231f767efc1759ac05ddda228f902a361dc37d37ac91c&ipo=images";
     const pokeball_icon_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fpokeball-icon-png%2Fpokeball-icon-png-2.jpg&f=1&nofb=1&ipt=98102c2fa13e3c57fd697e8ad1518c8ab473a23c21ba33ae640888a4c2cb2ae5&ipo=images";
@@ -329,6 +334,12 @@ function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, 
     const [searchFiltersOn, setSearchFiltersOn] = useState(false);
     const [filterHabitats, setFilterHabitats] = useState([])
     const [filterTypes, setFilterTypes] = useState([])
+
+    function isPokemonOwned(p) {
+        if (currentUserPokemon && currentUserPokemon.length > 0)
+            return (currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
+        return true;
+    }
     
     function makePokeGrid(p_list, type_filter)
     {
@@ -344,14 +355,17 @@ function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, 
 
         const grid = [];
         for (let p of p_list) {
+            let owned = false;
+            if (currentUserPokemon && currentUserPokemon.length > 0)
+                owned = (currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
             let habitat_name = p.habitat.name.replace("-", "_");
             let ent = (
                 <Link key={crypto.randomUUID()} to={'/pokedex/pokemon/' + p.name}>
-                <StyledPokemonCard key={crypto.randomUUID()} > 
+                <StyledPokemonCard className={owned ? "owned" : "unowned"} key={crypto.randomUUID()} > 
                 <PokemonImgDiv pokemon={p} />
                 <p>{"#" + ("000" + p.id).slice(-3)}</p>
-                <p className="pokemon-card-title">{capitalizeWord(p.name)}</p>
-                <TypeList theme={theme} types={p.types} />           
+                <p className="pokemon-card-title">{!owned ? capitalizeWord(p.name) : "???"}</p>
+                {!owned ? <TypeList theme={theme} types={p.types} /> : <p>"???"</p>}
                 </StyledPokemonCard>
                 </Link>
             );
@@ -417,7 +431,7 @@ function PokedexGallery({currentUser, setCurrentUser, pokemon, habitats, types, 
 
     useEffect(() => {
         makePokeGrid(pokemon);
-    }, [pokemon, habitats, types, theme])
+    }, [pokemon, habitats, types, theme, currentUserPokemon])
 
 
     return (

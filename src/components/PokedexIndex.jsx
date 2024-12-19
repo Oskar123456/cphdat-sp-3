@@ -5,6 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 
 import TypeList from './TypeList.jsx'
 
+import { fetchWithJwt } from '../js/Accounts.js';
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";
@@ -32,11 +33,18 @@ const StyledDiv = styled.div`
         padding: 0.4rem;
     }
     
-
     a {
         color: ${props => props.theme.poke_black};
-        > * {
-            padding: 0.4rem;
+        font-size: 1.2rem;
+        padding-left: 0.4rem;
+        > h2 {
+            font-size: 2rem;
+            margin: 0 0; 
+        }
+        @media (max-width: 800px) {
+            h2 {
+                font-size: 1.5rem;
+            }
         }
         border-radius: 0.5rem;
         &:hover {
@@ -55,10 +63,26 @@ const StyledDiv = styled.div`
 const StyledBottom = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 0.4rem;
     > * {
-        margin-left: 0.4rem;
+    }
+    h1 {
+        font-size: 2rem;
+        margin: 0 0; 
+    }
+    @media (max-width: 800px) {
+        h1 {
+            font-size: 1.5rem;
+            margin: 0 0; 
+        }
     }
 `;
+
+const StyledWelcomePage = styled.div`
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+`
 
 const StyledLink = styled.div`
     
@@ -84,7 +108,10 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
         { (!currentUser || !currentUser.loggedIn) ? (
             <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
         ) : (
+            <StyledWelcomePage>
             <h1>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username }</h1>
+            <Link to="/pokedex/mycollection">🞂 My collection</Link>
+            </StyledWelcomePage>
         ) }
             <Link to='/pokedex/pokemon'>
                 <h2>Discover</h2>

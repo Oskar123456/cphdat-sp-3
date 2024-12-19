@@ -32,7 +32,7 @@ const StyledDiv = styled.div`
 const StyledPath = styled.div`
     & a {
         color: black;
-        margin-right: 0.4rem;
+        margin-right: 0.1rem;
     }
 `;
 
@@ -48,7 +48,7 @@ const StyledLogout = styled.div`
     }
 `;
 
-function ShowPath({currentUser, setCurrentUser}) {
+function ShowPath({currentUser, setCurrentUser, setCurrentUserPokemon}) {
     
     let acc = '';
     let location = useLocation();
@@ -57,7 +57,6 @@ function ShowPath({currentUser, setCurrentUser}) {
     useEffect(() => {
         acc = '';
         setPath(location.pathname);
-        console.log(currentUser.username);
     }, [location, currentUser])
 
     return (
@@ -81,7 +80,7 @@ function ShowPath({currentUser, setCurrentUser}) {
             (<StyledLogout><p>
                 {currentUser.username.substring(0, 10) + ((currentUser.username.length > 10) ? "..." : "")}
                 </p>
-             <Logout setCurrentUser={setCurrentUser}/></StyledLogout>) 
+             <Logout setCurrentUser={setCurrentUser} setCurrentUserPokemon={setCurrentUserPokemon}/></StyledLogout>) 
             :
             (<Link to='/login'>log in</Link>)
         }

@@ -122,8 +122,8 @@ function Login({currentUser, setCurrentUser})
             <input name="password" id="password" placeholder="something nobody can remember" onChange={(pw) => setUserPassword(pw.target.value)}/>
             </StyledTextInput>
             <StyledButtons>
-            <button onClick={signupCB}>Sign up</button>
             <button onClick={loginCB}>Log in</button>
+            <button onClick={signupCB}>Sign up</button>
             </StyledButtons>
             {error && <p>{error.toString()}</p>}
             </form> 

@@ -1,9 +1,7 @@
-"use client";
 import { useRef, useEffect, useState, useContext } from "react";
 import { styled, ThemeProvider } from "styled-components";
 import { Outlet, useLocation, useParams, useOutletContext } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
-//import {require} from 'requirejs'
 
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
@@ -27,7 +25,6 @@ function StatChart({pokemon, theme, allPokemon}) {
         canvas.style.width = `${w}px`;
         canvas.style.height = `${h}px`;
         canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
-        //context.scale(dpr, dpr);
         
         const context = canvas.getContext('2d')
 

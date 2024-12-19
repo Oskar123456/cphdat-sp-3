@@ -8,7 +8,7 @@ let logged_in = false;
 
 function login(uname, upassword, uset, errorCallback) 
 {
-    fetch("https://pokedex.obhnothing.dk/api/auth/login", {
+    fetch(base_url + "/auth/login", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -37,7 +37,7 @@ function login(uname, upassword, uset, errorCallback)
             u['roles'] = claims['roles'];
             u['jwt'] = jwt.token;
             u['loggedIn'] = true;
-            console.log("logged in as: " + JSON.stringify(u) + " with token: " + user_current.jwt);
+            console.log("logged in as: " + JSON.stringify(u));
             uset(u);
             user_current = u;
         })
@@ -58,7 +58,7 @@ function login(uname, upassword, uset, errorCallback)
 
 function signup(uname, upassword, uset, errorCallback) 
 {
-    fetch("https://pokedex.obhnothing.dk/api/auth/register", {
+    fetch(base_url + "/auth/register", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -87,7 +87,7 @@ function signup(uname, upassword, uset, errorCallback)
             u['roles'] = claims['roles'];
             u['jwt'] = jwt.token;
             u['loggedIn'] = true;
-            console.log("signed up: " + JSON.stringify(u) + " with token: " + user_current.jwt);
+            console.log("signed up: " + JSON.stringify(u));
             uset(u);
             user_current = u;
         })
@@ -120,26 +120,24 @@ function getUser()
     return null;
 }
 
-function fetchWithJwt(url, callback, errorCallback, method, body) 
+function fetchResource(resource, callback, errorCallback, method, body) 
 {
-    //if (!user_current.loggedIn)
-    //    return null;
-
-    fetch(url, {
+    fetch(base_url + resource, {
         method: method ? method : 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user_current.jwt,
         },
         body: body ? JSON.stringify(body) : undefined,
     }).then(res => {
+        if (!(res.status === 200)) {
+            errorCallback("failed to fetch " + resource);
+            return;
+        }
         return res.json()
     }).then(json => {
-        if (json.status != undefined)
-            console.log('something went wrong: ' + json.message + ' (' + json.status + ')');
-        console.log('fetchWithJwt: ');
-        console.log(json);
+        if (!json)
+            return;
         callback(json);  
     }).catch(err => {
         if (err.fullError)
@@ -149,4 +147,32 @@ function fetchWithJwt(url, callback, errorCallback, method, body)
     })
 }
 
-export { login, logout, signup, getUser, fetchWithJwt }
+function fetchWithJwt(resource, callback, errorCallback, method, body) 
+{
+    fetch(base_url + resource, {
+        method: method ? method : 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + user_current.jwt,
+        },
+        body: body ? JSON.stringify(body) : undefined,
+    }).then(res => {
+        if (!(res.status === 200)) {
+            errorCallback("failed to fetch " + resource);
+            return;
+        }
+        return res.json()
+    }).then(json => {
+        if (!json)
+            return;
+        callback(json);
+    }).catch(err => {
+        if (err.fullError)
+            err.fullError.then(ferr => errorCallback(ferr));
+        else
+            errorCallback(err);
+    })
+}
+
+export { login, logout, signup, getUser, fetchResource, fetchWithJwt }

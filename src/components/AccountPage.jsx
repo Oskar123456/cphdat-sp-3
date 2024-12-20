@@ -175,7 +175,7 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
             <StyledCardPack>
             {cardPack.map(p => {
                 return (
-                    <PokemonCard key={crypto.randomUUID()} theme={theme} p={p} /> 
+                    <PokemonCard owned={true} key={crypto.randomUUID()} theme={theme} p={p} /> 
                 )})}
             </StyledCardPack>
         ) 
@@ -379,14 +379,14 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                 {cardPack.length > 0 && (
                     renderPack()
                 )}
-                <h2>Collection</h2>
+                <h1>Collection</h1>
                 {(currentUserPokemon) ? (
                     <>
                     <StyledGallery>
                     {gallery()}
                     </StyledGallery>
+                    <h2>Statistics</h2>
                     {generalStats()}
-                    <h3>Statistics</h3>
                     <StyledStats>
                     <div>
                     <h3>Distribution by type</h3>

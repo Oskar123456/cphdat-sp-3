@@ -532,8 +532,8 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         <StyledSearchFilterSelectionContainer  style={{display: "none"}} id="search-filter-selection-container">
         <div className="search-filter-selection" id="search-filter-selection">
-        <h3>Type Filters</h3>
         <button onClick={buttonResetCB}>Reset</button>
+        <h3>Type Filters</h3>
         {(types && types.length > 0) && makeTypeList()}
         <h3>Habitat Filters</h3>
         

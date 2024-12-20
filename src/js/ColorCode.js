@@ -19,12 +19,13 @@ function colorCodeType(theme, type)
 
 function colorCodeHabitat(theme, habitat) 
 {
+    const habitat_name = habitat.name.toLowerCase().replace("-", "_");
 
     let habitat_style = {};
     
-    if (theme["habitat_" + habitat.name]) {
-        let fg = theme["habitat_" + habitat.name].fg;
-        let bg = theme["habitat_" + habitat.name].bg;
+    if (theme["habitat_" + habitat_name]) {
+        let fg = theme["habitat_" + habitat_name].fg;
+        let bg = theme["habitat_" + habitat_name].bg;
         habitat_style.color = fg;
         habitat_style.backgroundColor = bg;
     }

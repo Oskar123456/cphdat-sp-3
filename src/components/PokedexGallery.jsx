@@ -166,7 +166,7 @@ const StyledPokedex = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     
-    .owned {
+    .unowned {
         opacity: 0.2;
     }
 
@@ -309,6 +309,7 @@ const StyledTypeName = styled.button`
     }
     & .off {
         text-decoration-line: line-through;
+        opacity: 0.2;
     }
 `;
 
@@ -329,6 +330,7 @@ const StyledSearchFilterSelectionContainer = styled.div`
         display: flex;
         flex-wrap: wrap;
         margin: 0; padding: 0;
+        gap: 0.1rem;
         list-style-type: none;
         margin: 0.1rem 0;
         text-align: left;
@@ -338,7 +340,7 @@ const StyledSearchFilterSelectionContainer = styled.div`
     }
 
     li {
-        margin: 0 0.1rem;
+        margin: 0 0;
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
@@ -351,6 +353,19 @@ const StyledSearchFilterSelectionContainer = styled.div`
         cursor: pointer;
     }
     
+    button {
+        background-color: ${props => props.theme.white};
+        border: 0.2rem solid ${props => props.theme.poke_black};
+        border-radius: 0.4rem;
+        width: fit-content;
+        
+        &:hover {
+            background-color: ${props => props.theme.poke_red};
+        }
+        &:active {
+            background-color: ${props => props.theme.poke_red};
+        }
+    }
 `;
 
 const StyledLoginTip = styled.div`
@@ -405,7 +420,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         const grid = [];
         for (let p of p_list) {
-            let owned = currentUserPokemon && !(currentUserPokemon.filter(pl => pl.id === p.id).length > 0);
+            let owned = currentUserPokemon != undefined && currentUserPokemon.find(pp => pp.id == p.id) != undefined;
             let habitat_name = p.habitat.name.replace("-", "_");
             let ent = <PokemonCard key={crypto.randomUUID()} owned={owned} theme={theme}  p={p}/>
             grid.push(ent);
@@ -468,6 +483,11 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         makePokeGrid(pokemon_filtered);
     }
 
+    function buttonResetCB() {
+        setFilterTypes([]);
+        makePokeGrid(pokemon, []);
+    }
+
     useEffect(() => {
         makePokeGrid(pokemon);
     }, [pokemon, habitats, types, theme, currentUserPokemon, currentUser])
@@ -512,6 +532,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         <StyledSearchFilterSelectionContainer  style={{display: "none"}} id="search-filter-selection-container">
         <div className="search-filter-selection" id="search-filter-selection">
         <h3>Type Filters</h3>
+        <button onClick={buttonResetCB}>Reset</button>
         {(types && types.length > 0) && makeTypeList()}
         <h3>Habitat Filters</h3>
         

@@ -125,6 +125,26 @@ const StyledLink = styled.div`
     }
 `
 
+const StyledGallery = styled.div`
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        list-style-type: none;
+        gap: 0.4rem;
+        li {
+            display: flex;
+            align-items: center;
+            margin: 0 0;
+            padding: 0;
+            gap: 0;
+            img {
+                width: 100%;
+            }
+        }
+    }
+`
+
 function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, pokemon, theme, types, habitats}) 
 {
 
@@ -155,7 +175,7 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
             <StyledCardPack>
             {cardPack.map(p => {
                 return (
-                    <PokemonCard theme={theme} p={p} /> 
+                    <PokemonCard key={crypto.randomUUID()} theme={theme} p={p} /> 
                 )})}
             </StyledCardPack>
         ) 
@@ -172,6 +192,24 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
         let title = <p>You have collected {p_uniq} (unique) out of {p_total} ({p_owned_prop.toString().substr(0,4)}%) POKèMON</p>;
 
         return title;
+    }
+
+    function gallery() {
+        let owned_uniq = new Array(pokemon.length + 1);
+        let owned_freqs = new Array(pokemon.length + 1).fill(0);
+        currentUserPokemon.forEach(p => {
+            owned_uniq[p.id] = p;
+            owned_freqs[p.id]++;
+        });
+
+        let lis = [];
+        for (let p of owned_uniq) {
+            if (!p) continue;
+            lis.push((
+               <li><img src={p.sprites.front_default}/><p>{"x" + owned_freqs[p.id]}</p></li> 
+            ));
+        }
+        return <ul>{lis}</ul>
     }
     
     function chartByHabitat() {
@@ -341,9 +379,12 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                 {cardPack.length > 0 && (
                     renderPack()
                 )}
-                <h2>Statistics</h2>
-                {currentUserPokemon ? (
+                <h2>Collection</h2>
+                {(currentUserPokemon) ? (
                     <>
+                    <StyledGallery>
+                    {gallery()}
+                    </StyledGallery>
                     {generalStats()}
                     <h3>Statistics</h3>
                     <StyledStats>
@@ -358,7 +399,7 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                     </StyledStats>
                     </>
                 ) : (
-                    <h2>Loading collection</h2>
+                    <h2>Loading collection...</h2>
                 )}
                 </>
             ) : (

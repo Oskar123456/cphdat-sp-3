@@ -112,8 +112,8 @@ function PokemonCard({p, owned, habitats, types, theme}) {
             <StyledPokemonCard className={owned ? "owned" : "unowned"} key={crypto.randomUUID()} > 
             <PokemonImgDiv pokemon={p} />
             <p>{"#" + ("000" + p.id).slice(-3)}</p>
-            <p className="pokemon-card-title">{!owned ? capitalizeWord(p.name) : "???"}</p>
-            {!owned ? <TypeList theme={theme} types={p.types} /> : <p>"???"</p>}
+            <p className="pokemon-card-title">{owned ? capitalizeWord(p.name) : "???"}</p>
+            {owned ? <TypeList theme={theme} types={p.types} /> : <p>"???"</p>}
             </StyledPokemonCard>
             </Link>
         );

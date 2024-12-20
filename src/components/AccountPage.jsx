@@ -54,7 +54,26 @@ const StyledButton = styled.button`
 
 const StyledStats = styled.div`
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+
+    > * {
+    }
+    
+    @media (max-width: 500px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #chart_by_type {
+    }
+    
+    #chart_by_habitat {
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
 `
 
 const StyledCardPack = styled.div`
@@ -106,13 +125,16 @@ const StyledLink = styled.div`
     }
 `
 
-function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, pokemon, theme}) 
+function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, pokemon, theme, types, habitats}) 
 {
 
     const [cardPack, setCardPack] = useState([]);
     
     useEffect(() => {
-        chartByType(200, 100);
+        chartByType();
+        chartByHabitat();
+        window.addEventListener('resize', chartByType);
+        window.addEventListener('resize', chartByHabitat);
     }, [currentUser, currentUserPokemon])
 
     function addPack(p) {
@@ -151,28 +173,158 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
 
         return title;
     }
+    
+    function chartByHabitat() {
+        let d = document.getElementById("chart_by_habitat");
+        if (!d || !currentUserPokemon) return;
+        
+        let font_size = Math.min(window.innerWidth / 38, 20);
+        let padding = 4;
+        let padding_top = 5;
 
-    function chartByType(w, h) {
-        let d = document.getElementById("chart_by_type");
-        if (!d) return;
+        let h = font_size * habitats.length;
+        let w = window.innerWidth / 3;
         
         const canvas = document.createElement("canvas");
-        
+        /* scaling to make image less blurry */
         let dpr = Math.ceil(window.devicePixelRatio) || 1;
         canvas.width = w * dpr;
         canvas.height = h * dpr;
         canvas.style.width = `${w}px`;
         canvas.style.height = `${h}px`;
         canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
-        
         const context = canvas.getContext('2d')
+        /* data init */
+        let owned_uniq = new Array(pokemon.length + 1);
+        currentUserPokemon.forEach(p => owned_uniq[p.id] = p);
+        
+        let habitat_freqs_uniq = new Map();
 
-        context.fillStyle = theme.poke_black;
-        context.fillRect(0, 0, w, h)
-
-        while (d.lastChild) {
-            d.removeChild(d.lastChild);
+        for (let p of owned_uniq) {
+            if (!p) continue;
+            habitat_freqs_uniq.set(p.habitat.name, (habitat_freqs_uniq.get(p.habitat.name)) != undefined ? 
+                habitat_freqs_uniq.get(p.habitat.name) + 1 : 1);
         }
+
+        /* drawing */
+        context.font = `${font_size}px VT323`;
+        let max_textwidth = 0;
+        let max_textheight = 0;
+
+        for (let h of habitats) {
+            let tw = context.measureText(h.name);
+            if (tw.width > max_textwidth) max_textwidth = tw.width;
+            if (tw.actualBoundingBoxAscent > max_textheight) max_textheight = tw.actualBoundingBoxAscent;
+        }
+        
+        let idx = 0;
+        let graph_w = w - max_textwidth;
+        let bar_h = max_textheight;
+        let bar_d = bar_h + padding;
+        
+        let max = Math.max(...habitat_freqs_uniq.values());
+        for (let [k, v] of habitat_freqs_uniq) {
+            context.font = `${font_size * 0.66}px VT323`;
+            let tw_w = context.measureText(v.toString()).width;
+            
+            let bar_w = Math.max(1, (v / max) * graph_w - tw_w * 5);
+            let bar_x = w - graph_w + 2 * padding;
+            context.fillStyle = theme.poke_red;
+            context.fillRect(bar_x, bar_d * idx, bar_w, bar_h);
+            
+            context.fillStyle = theme.poke_black;
+            context.font = `${font_size}px VT323`;
+            let tw = context.measureText(k).actualBoundingBoxAscent;
+            context.fillText(k, 0, bar_d * idx + tw);
+            context.font = `${font_size * 0.66}px VT323`;
+            let tw_n = context.measureText(v.toString()).actualBoundingBoxAscent;
+            context.fillText(v.toString(), bar_w + bar_x + padding, bar_d * idx + tw_n);
+            context.font = `${font_size}px VT323`;
+            
+            idx++;
+        }
+
+        /* replace previous in DOM */
+        while (d.lastChild)
+            d.removeChild(d.lastChild);
+        d.appendChild(canvas);
+    }
+
+    function chartByType() {
+        let d = document.getElementById("chart_by_type");
+        if (!d || !currentUserPokemon) return;
+        
+        let font_size = Math.min(window.innerWidth / 38, 20);
+        let padding = 4;
+        let padding_top = 5;
+
+        let h = font_size * types.length;
+        let w = window.innerWidth / 3;
+        
+        const canvas = document.createElement("canvas");
+        /* scaling to make image less blurry */
+        let dpr = Math.ceil(window.devicePixelRatio) || 1;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+        const context = canvas.getContext('2d')
+        /* data init */
+        let owned_uniq = new Array(pokemon.length + 1);
+        currentUserPokemon.forEach(p => owned_uniq[p.id] = p);
+        
+        let type_freqs_uniq = new Map();
+
+        for (let p of owned_uniq) {
+            if (!p) continue;
+            for (let t of p.types) {
+                type_freqs_uniq.set(t.name, (type_freqs_uniq.get(t.name)) != undefined ? 
+                    type_freqs_uniq.get(t.name) + 1 : 1);
+            }
+        }
+
+        /* drawing */
+        context.font = `${font_size}px VT323`;
+        let max_textwidth = 0;
+        let max_textheight = 0;
+
+        for (let t of types) {
+            let tw = context.measureText(t.name);
+            if (tw.width > max_textwidth) max_textwidth = tw.width;
+            if (tw.actualBoundingBoxAscent > max_textheight) max_textheight = tw.actualBoundingBoxAscent;
+        }
+        
+        let idx = 0;
+        let graph_w = w - max_textwidth;
+        let bar_h = max_textheight;
+        let bar_d = bar_h + padding;
+        
+        let max = Math.max(...type_freqs_uniq.values());
+        for (let [k, v] of type_freqs_uniq) {
+            context.font = `${font_size * 0.66}px VT323`;
+            let tw_w = context.measureText(v.toString()).width;
+            
+            let bar_w = Math.max(1, (v / max) * graph_w - tw_w * 5);
+            let bar_x = w - graph_w + 2 * padding;
+            context.fillStyle = theme.poke_red;
+            context.fillRect(bar_x, bar_d * idx, bar_w, bar_h);
+            
+            context.fillStyle = theme.poke_black;
+            context.font = `${font_size}px VT323`;
+            let tw = context.measureText(k).actualBoundingBoxAscent;
+            context.fillText(k, 0, bar_d * idx + tw);
+            context.font = `${font_size * 0.66}px VT323`;
+            let tw_n = context.measureText(v.toString()).actualBoundingBoxAscent;
+            context.fillText(v.toString(), bar_w + bar_x + padding, bar_d * idx + tw_n);
+            context.font = `${font_size}px VT323`;
+            
+            idx++;
+        }
+
+        /* replace previous in DOM */
+        while (d.lastChild)
+            d.removeChild(d.lastChild);
         d.appendChild(canvas);
     }
     
@@ -193,8 +345,16 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
                 {currentUserPokemon ? (
                     <>
                     {generalStats()}
+                    <h3>Statistics</h3>
                     <StyledStats>
+                    <div>
+                    <h3>Distribution by type</h3>
                     <div id="chart_by_type" />
+                    </div>
+                    <div>
+                    <h3>Distribution by habitat</h3>
+                    <div id="chart_by_habitat">oe</div>
+                    </div>
                     </StyledStats>
                     </>
                 ) : (

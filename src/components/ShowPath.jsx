@@ -27,6 +27,10 @@ const StyledDiv = styled.div`
             font-size: 0.6rem;
         }
     }
+
+    button {
+        padding-top: 0.4rem;
+    }
 `;
 
 const StyledPath = styled.div`

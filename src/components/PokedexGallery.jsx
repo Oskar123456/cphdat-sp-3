@@ -198,8 +198,9 @@ const StyledPokedex = styled.div`
     }
     
     li {
-        padding: 0.0rem;;
+        padding: 0.0rem;
         margin: 0.2rem 0;
+        margin-right: 0.2rem;
     }
 `;
 

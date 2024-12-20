@@ -199,7 +199,7 @@ const StyledPokedex = styled.div`
     
     li {
         padding: 0.0rem;;
-        margin: 0 0;
+        margin: 0.2rem 0;
     }
 `;
 

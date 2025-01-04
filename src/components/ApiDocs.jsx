@@ -201,6 +201,33 @@ function ApiDocs({currentUser})
         </a> </StyledCell>
         <StyledCell> [ANYONE] </StyledCell>
         </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> POST </StyledCell>
+        <StyledCell> 
+        <a href={"https://pokedex.obhnothing.dk/api" + "/pokemon/getpack"}>
+        /pokemon/getpack
+        </a> </StyledCell>
+        <StyledCell> [USER] </StyledCell>
+        </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> POST </StyledCell>
+        <StyledCell> 
+        <a href={"https://pokedex.obhnothing.dk/api" + "/auth/register"}>
+        /auth/register
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
+        
+        <StyledRow key={crypto.randomUUID()}>
+        <StyledCell> POST </StyledCell>
+        <StyledCell> 
+        <a href={"https://pokedex.obhnothing.dk/api" + "/auth/login"}>
+        /auth/login
+        </a> </StyledCell>
+        <StyledCell> [ANYONE] </StyledCell>
+        </StyledRow>
 
         </tbody>
         </StyledTable>

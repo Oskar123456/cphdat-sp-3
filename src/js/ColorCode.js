@@ -1,5 +1,3 @@
-
-
 function colorCodeType(theme, type) 
 {
 

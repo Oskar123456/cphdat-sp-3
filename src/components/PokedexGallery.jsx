@@ -292,6 +292,7 @@ const StyledTypeName = styled.button`
     font-style: normal;
     &:hover {
         cursor: pointer;
+        border-color: ${props => props.theme.poke_red};
     }
     > * {
         border-radius: 0;
@@ -407,22 +408,21 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
     const [filterHabitats, setFilterHabitats] = useState([])
     const [filterTypes, setFilterTypes] = useState([])
 
-    function makePokeGrid(p_list, type_filter)
+    function makePokeGrid(poke_list, type_filter)
     {
-        if (!p_list) return <h1>No Data for makePokeGrid</h1>;
+        if (!poke_list) return <h1>No Data for makePokeGrid</h1>;
 
         if (type_filter && type_filter.length > 0) {
-            p_list = p_list.filter(p => p.types.map(t => t.name)
+            poke_list = poke_list.filter(p => p.types.map(t => t.name)
                 .filter(n => !type_filter.map(t => t.name).includes(n))
                 .length > 0);
         }
 
-        p_list = p_list.sort((a,b) => a.id > b.id);
+        poke_list = poke_list.sort((a,b) => a.id > b.id);
 
         const grid = [];
-        for (let p of p_list) {
+        for (let p of poke_list) {
             let owned = currentUserPokemon != undefined && currentUserPokemon.find(pp => pp.id == p.id) != undefined;
-            let habitat_name = p.habitat.name.replace("-", "_");
             let ent = <PokemonCard key={crypto.randomUUID()} owned={owned} theme={theme}  p={p}/>
             grid.push(ent);
         }
@@ -535,7 +535,6 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         <button onClick={buttonResetCB}>Reset</button>
         <h3>Type Filters</h3>
         {(types && types.length > 0) && makeTypeList()}
-        <h3>Habitat Filters</h3>
         
         </div>
         </StyledSearchFilterSelectionContainer>

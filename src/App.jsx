@@ -9,6 +9,7 @@ import Themes from './js/Themes.js'
 
 import Layout from './components/Layout.jsx'
 import Home from './components/Home.jsx'
+import Test from './components/Test.jsx'
 import LoginPage from './components/LoginPage.jsx'
 import ApiDocs from './components/ApiDocs.jsx'
 import Pokedex from './components/Pokedex.jsx'
@@ -58,11 +59,14 @@ function App()
         <BrowserRouter basename="/">
         <Routes>
         <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 
-            currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
+            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} 
             errorElement={<ErrorPage />}>
+        
         <Route index element={<Home/>} 
             errorElement={<ErrorPage />}/>
         <Route path="/home" element={<Home/>} 
+            errorElement={<ErrorPage />} />
+        <Route path="/test" element={<Test/>} 
             errorElement={<ErrorPage />} />
         <Route path="/apidocs" element={<ApiDocs/>} />
         <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 

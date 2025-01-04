@@ -6,20 +6,6 @@ import { NavLink, Link } from "react-router-dom";
 import ToggleButton from './ToggleButton.jsx'
 
 const StyledContainer = styled.div`
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-color: ${props => props.theme.poke_red};
-    border-radius: 1rem;
-    border: 0.25rem solid ${props => props.theme.black};
-    & > * {
-    }
-    button {
-        &:hover {
-            cursor: pointer;
-        }
-    }
 `;
 
 const Buttons = styled.div`
@@ -76,27 +62,7 @@ function Pokedex({theme, themes, setTheme, toggleTheme})
 
     return (
         <StyledContainer>
-
-        <Buttons>
-        <Left>
-        <StyledButton>
-        <button></button>
-        </StyledButton>
-        <StyledSmallButton>
-        <button className="red"></button>
-        <button className="yellow"></button>
-        <button className="green"></button>
-        </StyledSmallButton>
-        </Left>
-
-        <ToggleButton callBack={toggleTheme} />
-        
-        </Buttons>
-        
-        <div>
         <Outlet />
-        </div>
-        
         </StyledContainer>
     )
     

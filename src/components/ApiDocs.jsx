@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
     padding-bottom: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    background-color: ${props => props.theme.poke_red};
+    background-color: ${props => props.theme.poke_white};
     border-radius: 1rem;
     border: 0.25rem solid ${props => props.theme.black};
     & > * {

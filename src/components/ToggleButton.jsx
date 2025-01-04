@@ -9,50 +9,67 @@ import { habitatImageLink } from "../js/PokeUtils.js";
 import PokemonImgDiv from './PokemonImgDiv.jsx'
 
 /* source: https://alvarotrigo.com/blog/toggle-switch-css/ */
-const Styled = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    input[type=checkbox]{
-      height: 0;
-      width: 0;
-      visibility: hidden;
+const Styled = styled.label`
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+
+    input {
+        opacity: 0;
+        height: 0;
+        width: 0;
     }
 
-    label {
-      cursor: pointer;
-      text-indent: -9999px;
-      width: 1.6rem;
-      height: 1.1rem;
-      background: grey;
-      display: block;
-      border-radius: 1rem;
-      position: relative;
+    .slider {
+        border-radius: 2rem;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .3s;
+        transition: .3s;
     }
 
-    label:after {
-      content: '';
-      position: absolute;
-      top: 0.15rem;
-      left: 0.15rem;
-      width: 0.75rem;
-      height: 0.75rem;
-      background: white;
-      border-radius: 2rem;
-      transition: 0.4s;
+    .slider:before {
+        border-radius: 2rem;
+        border: 2px solid ${props => props.theme.poke_black};
+        background-color: ${props => props.theme.gray};
+        
+        position: absolute;
+        content: "";
+        height: 13px;
+        width: 13px;
+        left: 2px;
+        bottom: 2px;
+        -webkit-transition: .3s;
+        transition: .3s;
     }
 
-    input:checked + label {
-      background: ${props => props.theme.azure};
+    input:checked + .slider {
+      background-color: ${props => props.theme.azure};
     }
 
-    input:checked + label:after {
-      left: calc(95% - 0.15rem);
-      transform: translateX(-100%);
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
     }
 
-    label:active:after {
-      width: 0.70rem;
+    input:checked + .slider:before {
+      -webkit-transform: translateX(11px);
+      -ms-transform: translateX(11px);
+      transform: translateX(11px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 17px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
     }
 `;
 
@@ -61,7 +78,12 @@ function ToggleButton({callBack})
     useEffect(() => {
     }, []);
     
-    return <Styled><input type="checkbox" id="switch" onClick={callBack} /><label htmlFor="switch">Toggle</label></Styled>;
+    return (
+      <Styled>
+          <input type="checkbox" onClick={callBack}/>
+          <span className="slider"></span>
+      </Styled>
+    )
 }
 
 export default ToggleButton

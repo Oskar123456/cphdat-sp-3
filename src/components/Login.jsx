@@ -128,7 +128,7 @@ function Login({currentUser, setCurrentUser})
             </StyledTextInput>
             <StyledTextInput>
             <label htmlFor="password">password: </label>
-            <input name="password" id="password" placeholder="something nobody can remember" onChange={(pw) => setUserPassword(pw.target.value)}/>
+            <input name="password" id="password" placeholder="password" onChange={(pw) => setUserPassword(pw.target.value)}/>
             </StyledTextInput>
             <StyledButtons>
             <button onClick={loginCB}>Log in</button>

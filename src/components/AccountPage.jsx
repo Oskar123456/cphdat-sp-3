@@ -206,7 +206,7 @@ function AccountPage({currentUser, currentUserPokemon, setCurrentUserPokemon, po
         for (let p of owned_uniq) {
             if (!p) continue;
             lis.push((
-               <li><img src={p.sprites.front_default}/><p>{"x" + owned_freqs[p.id]}</p></li> 
+               <li key={crypto.randomUUID()}><img src={p.sprites.front_default}/><p>{"x" + owned_freqs[p.id]}</p></li> 
             ));
         }
         return <ul>{lis}</ul>

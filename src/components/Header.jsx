@@ -85,7 +85,7 @@ function Header({currentUser, setCurrentUser}) {
 
     return (
         <StyledDiva className="panel">
-        <a href="/"> <img src={Logo}/> </a>
+        <Link to="/"> <img src={Logo}/> </Link>
         <h1>Pokedex</h1> 
         <StyledUl>
         <li> <Link to='/home'>About</Link> </li>

@@ -7,15 +7,6 @@ import { NavLink, Link } from "react-router-dom";
 import Login from './Login.jsx';
 
 const StyledOuter = styled.div`
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-color: ${props => props.theme.poke_red};
-    border-radius: 1rem;
-    border: 0.25rem solid ${props => props.theme.black};
-    & > * {
-    }
 `;
 
 const StyledDiv = styled.div`

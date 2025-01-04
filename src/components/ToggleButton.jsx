@@ -47,7 +47,7 @@ const Styled = styled.div`
     }
 
     input:checked + label:after {
-      left: calc(100% - 0.15rem);
+      left: calc(95% - 0.15rem);
       transform: translateX(-100%);
     }
 

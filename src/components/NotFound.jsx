@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 
 const StyledDiv = styled.div`
@@ -16,10 +16,8 @@ const StyledDiv = styled.div`
     }
 `;
 
-function NotFound({currentUser, setCurrentUser}) {
-
-    const [description, setDescription] = useState('');
-
+function NotFound() 
+{
     return (
         <StyledDiv>
         <h1> 404 Not Found </h1>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 
 const StyledDiv = styled.div`
@@ -16,18 +16,17 @@ const StyledDiv = styled.div`
     }
 `;
 
-function Pokedex({currentUser, setCurrentUser}) {
-
-    const [description, setDescription] = useState('');
-
+function ErrorPage() 
+{
+    const e = useRouteError()
     return (
         <StyledDiv>
-        <h1> Something went wrong! </h1>
+        <h1> Something went wrong! {e.statusText || e.message} </h1>
         </StyledDiv>
     ) 
 }
 
-export default Pokedex
+export default ErrorPage
 
 
 

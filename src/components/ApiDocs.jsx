@@ -91,46 +91,6 @@ const StyledDiv = styled.div`
 
 function ApiDocs() 
 {
-
-    const [apiSpec, setApiSpec] = useState([])
-
-    function parseApiSpec(html) {
-        let dummy_node = document.createElement('html');
-        dummy_node.innerHTML = html;
-
-        let table = dummy_node.getElementsByTagName("table")[0];
-        let tablebody = table.getElementsByTagName("tbody")[0];
-        let tablerows = tablebody.getElementsByTagName("tr");
-
-        console.log("table : " + table.innerHTML);
-        console.log("tablebody : " + tablebody.innerHTML);
-        console.log("tablerows : " + tablerows.length);
-        
-        let api_spec = [];
-        for (let i = 0; i < tablerows.length; i++) {
-            let rowelements = tablerows[i].cells;
-            api_spec.push({
-                method: rowelements[0].innerText,
-                path: rowelements[1].innerText,
-                roles: rowelements[3].innerText,
-            })
-        }
-        setApiSpec(api_spec);
-    }
-
-    function fetchApiSpec() {
-        fetch("https://pokedex.obhnothing.dk/api/routes")
-            .then(r => {
-                return r.text();
-            })
-            .then(t => {
-                parseApiSpec(t);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-
     useEffect(() => {
     }, [])
 

@@ -57,55 +57,43 @@ function App()
     }, [currentUser]);
     
     return (
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/" >
         <Routes>
+        
         <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 
-            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} 
-            errorElement={<ErrorPage />}>
+            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />}>
         
-        <Route index element={<Home/>} 
-            errorElement={<ErrorPage />}/>
-        <Route path="/home" element={<Home/>} 
-            errorElement={<ErrorPage />} />
-        <Route path="/test" element={<Test/>} 
-            errorElement={<ErrorPage />} />
-        <Route path="/apidocs" element={<ApiDocs />} />
-        <Route path="/docs" element={<ApiDocs />} />
-        <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
-            errorElement={<ErrorPage />} />
-        
-        <Route path="/pokedex" element={<Pokedex theme={theme} />} 
-            errorElement={<ErrorPage />}>
-        
-            <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
-                theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} 
-                errorElement={<ErrorPage />}/>
-        
-            <Route path="/pokedex/mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
-                setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} 
-                types={types} habitats={habitats} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/pokemon" element={<PokedexGallery currentUser={currentUser} 
-                currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} 
-                habitats={habitats} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
-                types={types} habitats={habitats} theme={theme}/>} 
-                errorElement={<ErrorPage />}/>
-            <Route path="/pokedex/type" element={<TypeDisplayList types={types} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
-                habitats={habitats} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/habitat" element={<HabitatList habitats={habitats} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-            <Route path="/pokedex/habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
-                habitats={habitats} theme={theme} 
-                errorElement={<ErrorPage />} />}/>
-        
+            <Route index element={<Home/>} />
+            <Route path="/home" element={<Home/>} />
+            <Route path="/test" element={<Test/>} />
+            <Route path="/apidocs" element={<ApiDocs />}  />
+            <Route path="/docs" element={<ApiDocs />}  />
+            <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+            
+            <Route path="/pokedex">
+            
+                <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
+                    theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+            
+                <Route path="/pokedex/mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
+                    setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} 
+                    types={types} habitats={habitats} theme={theme} />}/>
+                <Route path="/pokedex/pokemon" element={<PokedexGallery currentUser={currentUser} 
+                    currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} 
+                    habitats={habitats} theme={theme} />}/>
+                <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
+                    types={types} habitats={habitats} theme={theme}/>} />
+                <Route path="/pokedex/type" element={<TypeDisplayList types={types} theme={theme} />}/>
+                <Route path="/pokedex/type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
+                    habitats={habitats} theme={theme} />}/>
+                <Route path="/pokedex/habitat" element={<HabitatList habitats={habitats} theme={theme} />}/>
+                <Route path="/pokedex/habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
+                    habitats={habitats} theme={theme} />}/>
+            
+            </Route>
+            <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
-        </Route>
+        
         </Routes>
         </BrowserRouter>
     )

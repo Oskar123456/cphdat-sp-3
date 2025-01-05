@@ -8,7 +8,7 @@ import ToggleButton from './ToggleButton.jsx'
 const StyledContainer = styled.div`
 `;
 
-function Pokedex({themes, theme, setTheme, toggleTheme})
+function Pokedex({theme})
 {
 
     useEffect(() => {

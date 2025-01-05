@@ -90,7 +90,7 @@ function Header({currentUser, setCurrentUser}) {
         <StyledUl>
         <li> <Link to='/home'>About</Link> </li>
         <li> <Link to='/pokedex'>Pokedex</Link> </li>
-        <li> <Link to='/apidocs'>ApiDocs</Link> </li>
+        <li> <Link to='/docs'>ApiDocs</Link> </li>
         </StyledUl>
         </StyledDiva>
     )

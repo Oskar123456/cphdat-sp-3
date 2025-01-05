@@ -16,18 +16,18 @@ const StyledDiv = styled.div`
     }
 `;
 
-function Pokedex({currentUser, setCurrentUser}) {
+function NotFound({currentUser, setCurrentUser}) {
 
     const [description, setDescription] = useState('');
 
     return (
         <StyledDiv>
-        <h1> Something went wrong! </h1>
+        <h1> 404 Not Found </h1>
         </StyledDiv>
     ) 
 }
 
-export default Pokedex
+export default NotFound
 
 
 

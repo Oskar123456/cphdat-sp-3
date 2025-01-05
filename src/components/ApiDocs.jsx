@@ -89,7 +89,7 @@ const StyledDiv = styled.div`
     }
 `;
 
-function ApiDocs({currentUser}) 
+function ApiDocs() 
 {
 
     const [apiSpec, setApiSpec] = useState([])
@@ -132,7 +132,6 @@ function ApiDocs({currentUser})
     }
 
     useEffect(() => {
-        //fetchApiSpec();
     }, [])
 
     return (
@@ -140,7 +139,7 @@ function ApiDocs({currentUser})
         <StyledDiv className="trips_table">
         <h1>API Doc</h1>
 
-        <a href="https://github.com/Oskar123456/pokedexcphdat">backend source code</a>
+        <a href="https://github.com/Oskar123456/examcphdat">backend source code</a>
         <a href="https://github.com/Oskar123456/cphdat-sp-3">frontend source code</a>
         
         <StyledTable>

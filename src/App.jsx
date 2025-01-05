@@ -22,6 +22,7 @@ import TypeDisplay from './components/TypeDisplay.jsx'
 import HabitatList from './components/HabitatList.jsx'
 import HabitatDisplay from './components/HabitatDisplay.jsx'
 import ErrorPage from './components/ErrorPage.jsx'
+import NotFound from './components/NotFound.jsx'
 
 import './styles/App.css'
 
@@ -68,12 +69,12 @@ function App()
             errorElement={<ErrorPage />} />
         <Route path="/test" element={<Test/>} 
             errorElement={<ErrorPage />} />
-        <Route path="/apidocs" element={<ApiDocs/>} />
+        <Route path="/apidocs" element={<ApiDocs />} />
+        <Route path="/docs" element={<ApiDocs />} />
         <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} 
             errorElement={<ErrorPage />} />
         
-        <Route path="/pokedex" element={<Pokedex theme={theme} themes={Themes} toggleTheme={toggleTheme} 
-            pokemon={pokemon} types={types} habitats={habitats}/>} 
+        <Route path="/pokedex" element={<Pokedex theme={theme} />} 
             errorElement={<ErrorPage />}>
         
             <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
@@ -103,7 +104,7 @@ function App()
                 errorElement={<ErrorPage />} />}/>
         
         </Route>
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<NotFound />} />
         </Route>
         </Routes>
         </BrowserRouter>

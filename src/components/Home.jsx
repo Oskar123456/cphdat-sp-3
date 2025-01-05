@@ -42,8 +42,8 @@ const StyledDiv = styled.div`
     }
 `;
 
-function Home() {
-
+function Home() 
+{
     const [description, setDescription] = useState('');
 
     return (

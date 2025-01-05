@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { fetchWithJwt } from '../js/Accounts.js';
+import { fetchWithJwt } from '../js/ApiFacade.js';
 import { styled } from 'styled-components';
 
 const StyledContainer = styled.div`

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Outlet, useOutletContext } from "react-router-dom";
 
-import { fetchResource, fetchWithJwt } from './js/Accounts.js';
+import { fetchResource, fetchWithJwt } from './js/ApiFacade.js';
 
 import Themes from './js/Themes.js'
 

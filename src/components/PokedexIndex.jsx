@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 
 import TypeList from './TypeList.jsx'
 
-import { fetchWithJwt } from '../js/Accounts.js';
+import { fetchWithJwt } from '../js/ApiFacade.js';
 import { colorCodeHabitat, colorCodeType } from "../js/ColorCode.js";
 import { capitalizeWord, equalizeStrLens } from "../js/PokeUtils.js";
 import { habitatImageLink } from "../js/PokeUtils.js";

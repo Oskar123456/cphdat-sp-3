@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 
 import PokemonCard from './PokemonCard.jsx';
-import { fetchWithJwt } from '../js/Accounts.js';
+import { fetchWithJwt } from '../js/ApiFacade.js';
 
 const StyledDiv = styled.div`
     font-family: "VT323", serif;

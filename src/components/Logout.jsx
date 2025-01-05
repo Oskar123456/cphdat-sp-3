@@ -1,6 +1,6 @@
 import { useEffect, useState, useActionState } from "react";
 import { Outlet } from "react-router-dom";
-import { logout } from '../js/Accounts.js'
+import { logout } from '../js/ApiFacade.js'
 
 function Logout({setCurrentUser, setCurrentUserPokemon}) 
 {

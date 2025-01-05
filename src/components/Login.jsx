@@ -141,7 +141,7 @@ function Login({currentUser, setCurrentUser})
         ) : (currentUser && currentUser.loggedIn) ? (
             <>
             <h2>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username }</h2>
-            <h2><Link to={"/pokedex/mycollection"}>🞂 My collection</Link></h2>
+            <h2><Link to={"/pokedex/mycollection"}>&gt; My collection</Link></h2>
             </>
         ) : (
             <h2>??</h2>

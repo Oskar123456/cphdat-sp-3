@@ -114,7 +114,7 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
         ) : (
             <StyledWelcomePage>
             <h1>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username }</h1>
-            <Link to="/pokedex/mycollection">🞂 My collection</Link>
+            <Link to="/pokedex/mycollection">&gt; My collection</Link>
             </StyledWelcomePage>
         ) }
             <Link to='/pokedex/pokemon'>

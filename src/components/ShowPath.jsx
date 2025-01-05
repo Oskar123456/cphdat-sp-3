@@ -71,12 +71,12 @@ function ShowPath({currentUser, setCurrentUser, setCurrentUserPokemon}) {
                 if (sp.length > 0) {
                     acc += '/' + sp;
                     return (<Link key={crypto.randomUUID()} className="path_substr" 
-                        to={acc}>{'🞂' + sp}</Link>)
+                        to={acc}>{'>' + sp}</Link>)
                 }
             }                
             ) : (
                 <Link key={crypto.randomUUID()} className="path_substr" 
-                to="/home">🞂home</Link>
+                to="/home">&gt;home</Link>
             )
         }
         </StyledPath>

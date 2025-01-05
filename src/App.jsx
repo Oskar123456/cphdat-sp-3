@@ -57,7 +57,7 @@ function App()
     }, [currentUser]);
     
     return (
-        <BrowserRouter basename="/" >
+        <BrowserRouter>
         <Routes>
         
         <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 

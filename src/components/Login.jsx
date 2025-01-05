@@ -94,10 +94,8 @@ const StyledButtons = styled.div`
 function Login({currentUser, setCurrentUser}) 
 {
 
-    const [message, setMessage] = useState('');
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [userList, setUserList] = useState([]);
     const [error, setError] = useState();
 
     function errorCallback(message) {
@@ -122,14 +120,18 @@ function Login({currentUser, setCurrentUser})
         <h1>Log in to access your collection!</h1>
         { (!currentUser || !currentUser.loggedIn) ? (
             <form className="login_form" id="signup-form">
+            
             <StyledTextInput>
             <label htmlFor="email" >Email: </label>
-            <input name="email" id="email" placeholder="ash@pokedex.com" onChange={(email) => setUserName(email.target.value)}/>
+            <input name="email" id="email" placeholder="ash@pokedex.com" 
+            onChange={(email) => setUserName(email.target.value)}/>
             </StyledTextInput>
             <StyledTextInput>
             <label htmlFor="password">password: </label>
-            <input name="password" id="password" placeholder="password" onChange={(pw) => setUserPassword(pw.target.value)}/>
+            <input name="password" id="password" placeholder="password" 
+            onChange={(pw) => setUserPassword(pw.target.value)}/>
             </StyledTextInput>
+            
             <StyledButtons>
             <button onClick={loginCB}>Log in</button>
             <button onClick={signupCB}>Sign up</button>

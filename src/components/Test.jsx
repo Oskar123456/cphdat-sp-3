@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Outlet } from "react-router-dom"
 import { styled, ThemeProvider } from "styled-components"
 
@@ -21,7 +21,6 @@ const StyledClock = styled.div`
     > * {
         padding: 0.4rem;
     }
-    
 
     a {
         color: ${props => props.theme.poke_black};
@@ -45,6 +44,7 @@ const StyledClock = styled.div`
 function Test()
 {
     const [t, setT] = useState("")
+    const timer_id = useRef(null)
     
     let c = undefined
 
@@ -57,24 +57,40 @@ function Test()
         c.innerText = strTime(new Date()) + " (js)";
     }
     
+    function clockJs2() {
+        setT(strTime(new Date()) + " (reactjs)")
+    }
+
+    function clockStop() { 
+        if (timer_id.current) {
+            clearInterval(timer_id.current)
+            timer_id.current = null
+        }
+        else  {
+            timer_id.current = setInterval(clockJs2, 1000)
+            clockJs2()
+        }
+    }
+    
     useEffect(() => {
-        clockJs();
-        setT(strTime(new Date()))
+        clockJs()
+        clockJs2()
         
-        const int_id = setInterval(() => setT(strTime(new Date())), 1000)
-        const int_id_js = setInterval(clockJs, 1000)
+        const timer_id_react = setInterval(clockJs, 1000)
+        timer_id.current = setInterval(clockJs2, 1000)
         
         return () => {
-            clearInterval(int_id)   
-            clearInterval(int_id_js)   
+            clearInterval(timer_id_react)
+            clearInterval(timer_id.current)   
         }
-    }, [t])
+    }, [])
     
     return (
         <StyledContainer>
         <StyledClock>
-        <h1>{t} (reactjs)</h1>
+        <h1>{t}</h1>
         <h1 id="clock_js"></h1>
+        <button onClick={clockStop}>{timer_id.current ? "stop" : "start"} clock</button>
         </StyledClock>
         </StyledContainer>
     )

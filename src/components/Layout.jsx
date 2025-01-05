@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext, useContext} from "react"
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Outlet, useOutletContext, useNavigate } from "react-router-dom";
 import { styled, ThemeProvider } from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
@@ -158,8 +158,10 @@ const StyledSmallButton = styled.div`
     }
 `;
 
-function Layout({currentUser, setCurrentUser, setCurrentUserPokemon, theme, toggleTheme}) {
-
+function Layout({currentUser, setCurrentUser, setCurrentUserPokemon, theme, toggleTheme}) 
+{
+    let navigate = useNavigate();
+    
     useEffect(() => {
     }, [theme])
 
@@ -176,7 +178,7 @@ function Layout({currentUser, setCurrentUser, setCurrentUserPokemon, theme, togg
                 <Buttons>
                 <Left>
                 <StyledButton>
-                <button></button>
+                <button onClick={() => navigate(-1)}>⭅</button>
                 </StyledButton>
                 <StyledSmallButton>
                 <button className="red"></button>

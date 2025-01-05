@@ -164,27 +164,33 @@ const StyledPokedex = styled.div`
     
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
     
     .unowned {
         opacity: 0.2;
     }
-
     
-    @media (max-width: 1080px) {
+    @media (max-width: 1640px) {
+        grid-template-columns: repeat(10, 1fr);
+    }
+    
+    @media (max-width: 1400px) {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    
+    @media (max-width: 1140px) {
         grid-template-columns: repeat(6, 1fr);
     }
     
     @media (max-width: 940px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    @media (max-width: 600px) {
         grid-template-columns: repeat(4, 1fr);
     }
     
-    @media (max-width: 540px) {
+    @media (max-width: 520px) {
         grid-template-columns: repeat(3, 1fr);
-    }
-    
-    @media (max-width: 400px) {
-        grid-template-columns: repeat(2, 1fr);
     }
     
     @media (max-width: 380px) {
@@ -386,7 +392,7 @@ const StyledLoginTip = styled.div`
         font-size: 0.6rem;
     }
     @media (max-width: 500px) {
-        font-size: 0.4rem;
+        font-size: 0.6rem;
     }
     
     a:hover {

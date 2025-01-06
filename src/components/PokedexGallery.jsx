@@ -129,6 +129,13 @@ const StyledSearchFilters = styled.div`
     button {
         font-family: "VT323", serif;
         font-weight: 600;
+        font-size: 1rem;
+        @media (min-width: 1200px) {
+            font-size: 1.4rem;
+        }
+        @media (min-width: 800px) {
+            font-size: 1.2rem;
+        }
         font-style: normal;
         gap: 0.5rem;
         align-items: center;
@@ -325,6 +332,14 @@ const StyledTypeName = styled.button`
 `;
 
 const StyledSearchFilterSelectionContainer = styled.div`
+    font-size: 1.0rem;
+    @media (min-width: 800px) {
+        font-size: 1.2rem;
+    }
+    @media (min-width: 1200px) {
+        font-size: 1.4rem;
+    }
+
     .search-filter-selection {
         max-height: 0;
         transition: max-height 0.1s ease-out;
@@ -332,7 +347,7 @@ const StyledSearchFilterSelectionContainer = styled.div`
         overflow: auto;
     }
     .search-filter-selection.open {
-        max-height: 10rem;
+        max-height: 12rem;
         transition: max-height 0.1s ease-in;
         overflow: auto;
     }
@@ -365,6 +380,13 @@ const StyledSearchFilterSelectionContainer = styled.div`
     }
     
     button {
+        font-size: 1.0rem;
+        @media (min-width: 1200px) {
+            font-size: 1.4rem;
+        }
+        @media (min-width: 800px) {
+            font-size: 1.2rem;
+        }
         background-color: ${props => props.theme.white};
         border: 0.2rem solid ${props => props.theme.poke_black};
         border-radius: 0.4rem;
@@ -533,8 +555,8 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         <StyledSearchFilterSelectionContainer  style={{display: "none"}} id="search-filter-selection-container">
         <div className="search-filter-selection" id="search-filter-selection">
-        <button onClick={buttonResetCB}>Reset</button>
         <h3>Type Filters</h3>
+        <button onClick={buttonResetCB}>Reset</button>
         {(types && types.length > 0) && makeTypeList()}
         
         </div>

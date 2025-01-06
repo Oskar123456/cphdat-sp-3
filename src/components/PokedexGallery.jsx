@@ -347,7 +347,7 @@ const StyledSearchFilterSelectionContainer = styled.div`
         overflow: auto;
     }
     .search-filter-selection.open {
-        max-height: 12rem;
+        max-height: 13rem;
         transition: max-height 0.1s ease-in;
         overflow: auto;
     }

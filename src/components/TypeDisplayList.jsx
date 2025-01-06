@@ -120,7 +120,6 @@ const StyledImgDiv = styled.img`
 
 function TypeDisplayList({currentUser, setCurrentUser, pokemon, habitats, types, theme}) 
 {
-    
     useEffect(() => {
     }, [types])
 

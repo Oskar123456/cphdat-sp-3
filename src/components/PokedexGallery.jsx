@@ -119,13 +119,14 @@ const StyledSearchFilters = styled.div`
     
     :hover {
         background-color: ${props => props.theme.poke_gray};
+        border-color: ${props => props.theme.poke_red};
     }
     :active {
         background-color: ${props => props.theme.poke_red};
     }
 
     
-    & button {
+    button {
         font-family: "VT323", serif;
         font-weight: 600;
         font-style: normal;
@@ -143,7 +144,7 @@ const StyledSearchFilters = styled.div`
         }
     }
     
-    & img {
+    img {
         height: 1.2rem;
         width: 1.2rem;
     }
@@ -418,7 +419,7 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
     {
         if (!poke_list) return <h1>No Data for makePokeGrid</h1>;
 
-        if (type_filter && type_filter.length > 0) {
+        if (type_filter) {
             poke_list = poke_list.filter(p => p.types.map(t => t.name)
                 .filter(n => !type_filter.map(t => t.name).includes(n))
                 .length > 0);
@@ -426,12 +427,12 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
 
         poke_list = poke_list.sort((a,b) => a.id > b.id);
 
-        const grid = [];
-        for (let p of poke_list) {
-            let owned = currentUserPokemon != undefined && currentUserPokemon.find(pp => pp.id == p.id) != undefined;
-            let ent = <PokemonCard key={crypto.randomUUID()} owned={owned} theme={theme}  p={p}/>
-            grid.push(ent);
-        }
+        const grid = poke_list.map(p => (
+            <PokemonCard key={crypto.randomUUID()} 
+            owned={currentUserPokemon && currentUserPokemon.find(pp => pp.id == p.id)}
+            theme={theme} p={p}/>
+        ))
+        
         setPokeGrid(grid);
     }
 
@@ -439,7 +440,6 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
         let new_filter = filterTypes.filter(t2 => t2.name != t.name);
         if (new_filter.length === filterTypes.length)
             new_filter.push(t);
-        //console.log(new_filter.map(t => t.name));
         setFilterTypes(new_filter);
         makePokeGrid(pokemon, new_filter);
     }
@@ -480,16 +480,9 @@ function PokedexGallery({currentUserPokemon, currentUser, setCurrentUser, pokemo
     }
 
     function searchInputCB(e) {
-        //console.log(e.target.value);
-        let pokemon_filtered = pokemon.filter(p => p.name.toLowerCase().includes(e.target.value));
-        makePokeGrid(pokemon_filtered);
+        makePokeGrid(pokemon.filter(p => p.name.toLowerCase().includes(e.target.value)));
     }
     
-    function filterCB(e) {
-        let pokemon_filtered = pokemon;
-        makePokeGrid(pokemon_filtered);
-    }
-
     function buttonResetCB() {
         setFilterTypes([]);
         makePokeGrid(pokemon, []);

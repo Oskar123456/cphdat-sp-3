@@ -70,7 +70,7 @@ function App()
             <Route path="/docs" element={<ApiDocs />}  />
             <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
             
-            <Route path="/pokedex">
+            <Route path="/pokedex" errorElement={<ErrorPage />}>
             
                 <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
                     theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />

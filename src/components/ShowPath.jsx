@@ -14,16 +14,16 @@ const StyledDiv = styled.div`
     border-radius: 1rem;
     padding: 0.5rem;
     max-height: 2rem;
-    & a {
+    a {
         color: black;
     }
     @media(max-width: 580px) {
-        & a {
+        a {
             font-size: 0.8rem;
         }
     }
     @media(max-width: 480px) {
-        & a {
+        a {
             font-size: 0.6rem;
         }
     }
@@ -44,10 +44,15 @@ const StyledLogout = styled.div`
     display: flex;
     align-items: center;
     gap: 0.2rem;
+    :hover {
+        cursor: pointer;
+        background-color: ${props => props.theme.poke_red};
+        border: 0.2rem solid ${props => props.theme.poke_red};
+    }
     button {
         border-radius: 0.4rem;
-        background-color: ${props => props.theme.poke_red};
-        border: 0.2rem solid ${props => props.theme.poke_black};
+        background-color: ${props => props.theme.poke_gray};
+        border: 0.2rem solid ${props => props.theme.poke_gray};
         width: fit-content;
     }
 `;

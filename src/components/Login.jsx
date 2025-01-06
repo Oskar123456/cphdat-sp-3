@@ -136,7 +136,7 @@ function Login({currentUser, setCurrentUser})
             <button onClick={loginCB}>Log in</button>
             <button onClick={signupCB}>Sign up</button>
             </StyledButtons>
-            {error && <p>{error.toString()}</p>}
+            {error && <p>(!!) {error.toString()}</p>}
             </form> 
         ) : (currentUser && currentUser.loggedIn) ? (
             <>

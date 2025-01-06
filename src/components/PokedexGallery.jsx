@@ -170,6 +170,8 @@ const StyledPokedex = styled.div`
         opacity: 0.2;
     }
     
+    grid-template-columns: repeat(10, 1fr);
+    
     @media (max-width: 1640px) {
         grid-template-columns: repeat(10, 1fr);
     }

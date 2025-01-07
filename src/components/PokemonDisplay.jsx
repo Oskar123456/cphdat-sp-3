@@ -268,16 +268,20 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
     const loc = useLocation();
     const pokemonName = useParams();
     const [p, setP] = useState()
+    const [e, setE] = useState()
     const nav_back = useNavigate();
 
     useEffect(() => {
+        let found = false;
         for (let p of pokemon)  {
             if (p.name === pokemonName.name) {
                 setP(p);
-                //console.log("set p to " + p.name);
+                setE("");
+                found = true;
                 break;
             }
         }
+        if (pokemon && pokemon.length && !found) setE("Pokemon " + pokemonName.name + " not found...")
     }, [pokemon, habitats, types, theme, pokemonName, loc])
 
     return (
@@ -335,7 +339,7 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             
             </StyledBottom>
         </>
-        ) : <h1>Loading...</h1>
+        ) : e ? <h1>{e}</h1> : <h1>Loading...</h1>
         }
         </StyledDiv>
     ) 

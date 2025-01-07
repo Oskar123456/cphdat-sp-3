@@ -36,6 +36,7 @@ function App()
     const [types, setTypes] = useState([])
     const [themeNr, setThemeNr] = useState(0)
 
+
     function toggleTheme() {
         setThemeNr((themeNr + 1) % 2);
         setTheme(Themes[(themeNr + 1) % 2]);
@@ -64,30 +65,30 @@ function App()
             currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />}>
         
             <Route index element={<Home/>} />
-            <Route path="/home" element={<Home/>} />
-            <Route path="/test" element={<Test/>} />
-            <Route path="/apidocs" element={<ApiDocs />}  />
-            <Route path="/docs" element={<ApiDocs />}  />
-            <Route path="/login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+            <Route path="home" element={<Home/>} />
+            <Route path="test" element={<Test/>} />
+            <Route path="apidocs" element={<ApiDocs />}  />
+            <Route path="docs" element={<ApiDocs />}  />
+            <Route path="login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
             
-            <Route path="/pokedex" errorElement={<ErrorPage />}>
+            <Route path="pokedex">
             
                 <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
                     theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
             
-                <Route path="/pokedex/mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
+                <Route path="mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
                     setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} 
                     types={types} habitats={habitats} theme={theme} />}/>
-                <Route path="/pokedex/pokemon" element={<PokedexGallery currentUser={currentUser} 
+                <Route path="pokemon" element={<PokedexGallery currentUser={currentUser} 
                     currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} 
                     habitats={habitats} theme={theme} />}/>
-                <Route path="/pokedex/pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
+                <Route path="pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
                     types={types} habitats={habitats} theme={theme}/>} />
-                <Route path="/pokedex/type" element={<TypeDisplayList types={types} theme={theme} />}/>
-                <Route path="/pokedex/type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
+                <Route path="type" element={<TypeDisplayList types={types} theme={theme} />}/>
+                <Route path="type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
                     habitats={habitats} theme={theme} />}/>
-                <Route path="/pokedex/habitat" element={<HabitatList habitats={habitats} theme={theme} />}/>
-                <Route path="/pokedex/habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
+                <Route path="habitat" element={<HabitatList habitats={habitats} theme={theme} />}/>
+                <Route path="habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
                     habitats={habitats} theme={theme} />}/>
             
             </Route>

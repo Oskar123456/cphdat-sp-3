@@ -12,7 +12,7 @@ const StyledDiv = styled.div`
     border: 0.25rem solid ${props => props.theme.poke_black};
     background-color: ${props => props.theme.poke_white};
     @media (max-width: 768px) {
-        width: 100%;
+        width: 90%;
     }
 `;
 

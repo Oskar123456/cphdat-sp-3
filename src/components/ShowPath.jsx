@@ -27,10 +27,6 @@ const StyledDiv = styled.div`
             font-size: 0.6rem;
         }
     }
-
-    button {
-        padding-top: 0.4rem;
-    }
 `;
 
 const StyledPath = styled.div`
@@ -43,17 +39,21 @@ const StyledPath = styled.div`
 const StyledLogout = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.2rem;
-    :hover {
-        cursor: pointer;
-        background-color: ${props => props.theme.poke_red};
-        border: 0.2rem solid ${props => props.theme.poke_red};
-    }
     button {
-        border-radius: 0.4rem;
-        background-color: ${props => props.theme.poke_gray};
-        border: 0.2rem solid ${props => props.theme.poke_gray};
-        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.2rem;
+        color: black;
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        /*optional*/
+        /*input has OS specific font-family*/
+        text-decoration: underline;
+        cursor: pointer;
     }
 `;
 
@@ -62,10 +62,17 @@ function ShowPath({currentUser, setCurrentUser, setCurrentUserPokemon}) {
     let acc = '';
     let location = useLocation();
     const [path, setPath] = useState("");
+    const [uName, setUName] = useState('');
 
     useEffect(() => {
         acc = '';
         setPath(location.pathname);
+        try {
+            setUName(JSON.parse(localStorage.getItem("user")).username)
+        }
+        catch (e) {
+            console.log("caught err in ShowPath: " + e)
+        }
     }, [location, currentUser])
 
     return (
@@ -86,10 +93,10 @@ function ShowPath({currentUser, setCurrentUser, setCurrentUserPokemon}) {
         }
         </StyledPath>
         { currentUser.loggedIn ?
-            (<StyledLogout><p>
-                {currentUser.username.substring(0, 10) + ((currentUser.username.length > 10) ? "..." : "")}
-                </p>
-             <Logout setCurrentUser={setCurrentUser} setCurrentUserPokemon={setCurrentUserPokemon}/></StyledLogout>) 
+            (<StyledLogout>
+                <p>{uName.substring(0, 10) + ((uName.length > 10) ? "..." : "")} </p>
+                <Logout setCurrentUser={setCurrentUser} setCurrentUserPokemon={setCurrentUserPokemon}/>
+                </StyledLogout>) 
             :
             (<Link to='/login'>log in</Link>)
         }

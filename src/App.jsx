@@ -54,6 +54,14 @@ function App()
             fetchResource("/pokemon/habitat", setHabitats, (err) => console.log(err));
         if (!types || types.length < 1)
             fetchResource("/pokemon/type", setTypes, (err) => console.log(err));
+
+        if (currentUser && !currentUser.loggedIn) {
+            const u = localStorage.getItem("user")
+            if (u) {
+                setCurrentUser({loggedIn: true})
+            }
+        }
+        
         updateCurrentPokemon();
     }, [currentUser]);
     
@@ -62,7 +70,7 @@ function App()
         <Routes>
         
         <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 
-            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />}>
+            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />} >
         
             <Route index element={<Home/>} />
             <Route path="home" element={<Home/>} />

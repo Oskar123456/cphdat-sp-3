@@ -98,11 +98,18 @@ const StyledLink = styled.div`
 function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, theme}) {
 
     const pokemon_poster_url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpngimg.com%2Fuploads%2Fpokemon%2Fpokemon_PNG98.png&f=1&nofb=1&ipt=1e250c147aa898bf9d9e271d1a39b6805efe70a70e9448d13eeb17aad5bcbe6e&ipo=images";
+    const [uName, setUName] = useState('');
 
     function buttonCrsClickCB(e) {
     }
 
     useEffect(() => {
+        try {
+            setUName(JSON.parse(localStorage.getItem("user")).username)
+        }
+        catch (e) {
+            console.log("caught err in PokedexIndex: " + e)
+        }
     }, [pokemon, habitats, types, theme, currentUser])
 
     return (
@@ -113,7 +120,7 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
             <Login currentUser={currentUser} setCurrentUser={setCurrentUser} />
         ) : (
             <StyledWelcomePage>
-            <h1>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username }</h1>
+            <h1>Welcome back {(uName.length < 1) ? "<unnamed user>" : uName}</h1>
             <Link to="/pokedex/mycollection">&gt; My collection</Link>
             </StyledWelcomePage>
         ) }

@@ -7,6 +7,7 @@ import Themes from '../js/Themes.js'
 
 import Header from './Header.jsx'
 import ShowPath from './ShowPath.jsx'
+import ErrorPage from './ErrorPage.jsx'
 
 const Container = styled.div`
     display: flex;

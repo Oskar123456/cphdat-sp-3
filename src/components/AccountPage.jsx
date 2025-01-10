@@ -81,21 +81,21 @@ const StyledCardPack = styled.div`
     grid-template-columns: repeat(5, 1fr);
 
     gap: 0.4rem;
-
-    @media (max-width: 1040px) {
+    
+    @media (max-width: 840px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    @media (max-width: 640px) {
         grid-template-columns: repeat(4, 1fr);
     }
     
-    @media (max-width: 840px) {
+    @media (max-width: 540px) {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    @media (max-width: 540px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     @media (max-width: 400px) {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 `
 

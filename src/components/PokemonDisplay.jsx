@@ -297,7 +297,6 @@ function PokemonDisplay({currentUser, setCurrentUser, pokemon, habitats, types, 
             
             <StatChart pokemon={p} theme={theme} allPokemon={pokemon} />
             
-            
             </StyledLeft>
             
             <StyledRight>

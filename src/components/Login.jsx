@@ -94,6 +94,7 @@ const StyledButtons = styled.div`
 function Login({currentUser, setCurrentUser}) 
 {
 
+    const [uName, setUName] = useState('');
     const [userName, setUserName] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [error, setError] = useState();
@@ -113,6 +114,12 @@ function Login({currentUser, setCurrentUser})
     }
 
     useEffect(() => {
+        try {
+            setUName(JSON.parse(localStorage.getItem("user")).username)
+        }
+        catch (e) {
+            console.log("caught err in Login: " + e)
+        }
     }, [currentUser])
 
     return (
@@ -136,11 +143,13 @@ function Login({currentUser, setCurrentUser})
             <button onClick={loginCB}>Log in</button>
             <button onClick={signupCB}>Sign up</button>
             </StyledButtons>
+            
             {error && <p>(!!) {error.toString()}</p>}
+            
             </form> 
         ) : (currentUser && currentUser.loggedIn) ? (
             <>
-            <h2>Welcome back {(currentUser.username.length < 1) ? "<unnamed user>" : currentUser.username }</h2>
+            <h2>Welcome back {(uName.length < 1) ? "<unnamed user>" : uName }</h2>
             <h2><Link to={"/pokedex/mycollection"}>&gt; My collection</Link></h2>
             </>
         ) : (

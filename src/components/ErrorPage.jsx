@@ -7,10 +7,11 @@ const StyledDiv = styled.div`
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.8rem;
+    margin: 2rem 2rem;
     padding: 1rem;
     border-radius: 0.5rem;
     border: 0.25rem solid ${props => props.theme.poke_black};
-    background-color: ${props => props.theme.poke_white};
+    background-color: white;
     @media (max-width: 768px) {
         width: 100%;
     }

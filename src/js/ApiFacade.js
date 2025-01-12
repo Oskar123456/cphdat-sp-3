@@ -1,7 +1,6 @@
 import { HttpRequestAsJson } from "./HttpRequest.js"
 
 const base_url = "https://pokedex.obhnothing.dk/api";
-const endpt_login = "/auth/login";
 
 function login(uname, upassword, uset, errorCallback) 
 {
@@ -21,16 +20,15 @@ function login(uname, upassword, uset, errorCallback)
             return response.json()
         })
         .then(jwt => {
+            let claims = JSON.parse(atob(jwt.token.split('.')[1]));
             let u = {};
-            let s = jwt.token.split('.');
-            let claims = JSON.parse(atob(s[1]));
             u['username'] = claims['username'];
             u['roles'] = claims['roles'];
             u['jwt'] = jwt.token;
             u['loggedIn'] = true;
+            uset({loggedIn: true});
             localStorage.setItem("user", JSON.stringify(u));
             console.log("logged in as: " + JSON.stringify(u));
-            uset({loggedIn: true});
         })
         .catch(err => {
             errorCallback(err);
@@ -48,41 +46,64 @@ function signup(uname, upassword, uset, errorCallback)
         body: JSON.stringify({
             username: uname,
             password: upassword})
-    })
+        })
         .then((response) => { 
             if (!(response.status === 201))
                 throw new Error("could not create user");
             return response.json()
         })
         .then(jwt => {
+            let claims = JSON.parse(atob(jwt.token.split('.')[1]));
             let u = {};
-            let s = jwt.token.split('.');
-            let claims = JSON.parse(atob(s[1]));
             u['username'] = claims['username'];
             u['roles'] = claims['roles'];
             u['jwt'] = jwt.token;
             u['loggedIn'] = true;
+            uset({loggedIn: true});
             localStorage.setItem("user", JSON.stringify(u));
             console.log("signed up: " + JSON.stringify(u));
-            uset({loggedIn: true});
         })
         .catch(err => {
             errorCallback(err);
         });
 }
 
-function logout(uset) 
-{
-    console.log("logging out from: " + JSON.stringify(localStorage.getItem("user")));
-    localStorage.clear()
-    uset({ loggedIn: false })
+function getExpFromJwt(jwt) {
+    let claims = JSON.parse(atob(jwt.split('.')[1]));
+    return new Date(claims.exp * 1000)
 }
 
-function getUser() 
+function checkLogin(user, uset) {
+    const u = localStorage.getItem("user")
+    if (!u) {
+        if (user.loggedIn)
+            uset({loggedIn: false})
+        return
+    }
+    
+    let exp = getExpFromJwt(JSON.parse(u).jwt)
+    let now = new Date()
+    let n = JSON.parse(u).username
+    let d = ("" + (Math.round((exp - now) / 1000 / 60)))
+
+    if (exp < now) {
+        console.log("your jwt expired " + Math.abs(d) + " minutes ago, logging out...")
+        logout(uset)
+        return
+    }
+
+    if (!user.loggedIn) {
+        console.log("still logged in as " + n + ", jwt expires in " + d + " minutes")
+        uset({loggedIn: true})
+        return
+    }
+}
+
+function logout(uset) 
 {
-    if (logged_in)
-        return jwt;
-    return null;
+    console.log("logging out from: " + localStorage.getItem("user"));
+    localStorage.clear()
+    uset({ loggedIn: false })
 }
 
 function fetchResource(resource, callback, errorCallback, method, body) 
@@ -128,4 +149,4 @@ function fetchWithJwt(resource, callback, errorCallback, method, body)
     })
 }
 
-export { login, logout, signup, getUser, fetchResource, fetchWithJwt }
+export { login, checkLogin, logout, signup, fetchResource, fetchWithJwt }

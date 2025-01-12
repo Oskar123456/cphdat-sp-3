@@ -108,7 +108,6 @@ function PokedexIndex({currentUser, setCurrentUser, pokemon, habitats, types, th
             setUName(JSON.parse(localStorage.getItem("user")).username)
         }
         catch (e) {
-            console.log("caught err in PokedexIndex: " + e)
         }
     }, [pokemon, habitats, types, theme, currentUser])
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, useActionState } from "react";
 import { Outlet } from "react-router-dom";
-import { login, logout, signup, getUser } from '../js/ApiFacade.js'
+import { login, logout, signup } from '../js/ApiFacade.js'
 import { styled, ThemeProvider } from "styled-components";
 import { NavLink, Link } from "react-router-dom";
 
@@ -118,7 +118,6 @@ function Login({currentUser, setCurrentUser})
             setUName(JSON.parse(localStorage.getItem("user")).username)
         }
         catch (e) {
-            console.log("caught err in Login: " + e)
         }
     }, [currentUser])
 

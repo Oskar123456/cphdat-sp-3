@@ -71,7 +71,6 @@ function ShowPath({currentUser, setCurrentUser, setCurrentUserPokemon}) {
             setUName(JSON.parse(localStorage.getItem("user")).username)
         }
         catch (e) {
-            console.log("caught err in ShowPath: " + e)
         }
     }, [location, currentUser])
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useActionState } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, BrowserRouter, Routes, Route } from "react-router-dom";
 import { Outlet, useOutletContext } from "react-router-dom";
 
-import { fetchResource, fetchWithJwt } from './js/ApiFacade.js';
+import { fetchResource, fetchWithJwt, checkLogin } from './js/ApiFacade.js';
 
 import Themes from './js/Themes.js'
 
@@ -55,57 +55,49 @@ function App()
         if (!types || types.length < 1)
             fetchResource("/pokemon/type", setTypes, (err) => console.log(err));
 
-        if (currentUser && !currentUser.loggedIn) {
-            const u = localStorage.getItem("user")
-            if (u) {
-                setCurrentUser({loggedIn: true})
-            }
-        }
+        checkLogin(currentUser, setCurrentUser)
         
         updateCurrentPokemon();
     }, [currentUser]);
-    
-    return (
-        <BrowserRouter>
-        <Routes>
-        
-        <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 
-            currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />} >
-        
-            <Route index element={<Home/>} />
-            <Route path="home" element={<Home/>} />
-            <Route path="test" element={<Test/>} />
-            <Route path="apidocs" element={<ApiDocs />}  />
-            <Route path="docs" element={<ApiDocs />}  />
-            <Route path="login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path="/" element={<Layout setCurrentUserPokemon={setCurrentUserPokemon} theme={theme} 
+                currentUser={currentUser} setCurrentUser={setCurrentUser} toggleTheme={toggleTheme} />} errorElement={<ErrorPage />} >
             
-            <Route path="pokedex">
-            
-                <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
-                    theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
-            
-                <Route path="mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
-                    setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} 
-                    types={types} habitats={habitats} theme={theme} />}/>
-                <Route path="pokemon" element={<PokedexGallery currentUser={currentUser} 
-                    currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} 
-                    habitats={habitats} theme={theme} />}/>
-                <Route path="pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
-                    types={types} habitats={habitats} theme={theme}/>} />
-                <Route path="type" element={<TypeDisplayList types={types} theme={theme} />}/>
-                <Route path="type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
-                    habitats={habitats} theme={theme} />}/>
-                <Route path="habitat" element={<HabitatList habitats={habitats} theme={theme} />}/>
-                <Route path="habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
-                    habitats={habitats} theme={theme} />}/>
-            
+                <Route index element={<Home/>} />
+                <Route path="home" element={<Home/>} />
+                <Route path="test" element={<Test/>} />
+                <Route path="apidocs" element={<ApiDocs />}  />
+                <Route path="docs" element={<ApiDocs />}  />
+                <Route path="login" element={<LoginPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+                <Route path="pokedex">
+                
+                    <Route index element={<PokedexIndex pokemon={pokemon} types={types} habitats={habitats} 
+                        theme={theme} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+                
+                    <Route path="mycollection" element={<AccountPage currentUserPokemon={currentUserPokemon} 
+                        setCurrentUserPokemon={setCurrentUserPokemon} currentUser={currentUser} pokemon={pokemon} 
+                        types={types} habitats={habitats} theme={theme} />}/>
+                    <Route path="pokemon" element={<PokedexGallery currentUser={currentUser} 
+                        currentUserPokemon={currentUserPokemon} pokemon={pokemon} types={types} 
+                        habitats={habitats} theme={theme} />}/>
+                    <Route path="pokemon/:name" element={<PokemonDisplay pokemon={pokemon} 
+                        types={types} habitats={habitats} theme={theme}/>} />
+                    <Route path="type" element={<TypeDisplayList types={types} theme={theme} />}/>
+                    <Route path="type/:name" element={<TypeDisplay pokemon={pokemon} types={types} 
+                        habitats={habitats} theme={theme} />}/>
+                    <Route path="habitat" element={<HabitatList habitats={habitats} theme={theme} />}/>
+                    <Route path="habitat/:name" element={<HabitatDisplay pokemon={pokemon} types={types} 
+                        habitats={habitats} theme={theme} />}/>
+                
+                </Route>
+                <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
-        </Route>
-        
-        </Routes>
-        </BrowserRouter>
+        )
     )
+    
+    return <RouterProvider router={router} />
 }
 
 export default App

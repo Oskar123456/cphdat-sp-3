@@ -199,6 +199,7 @@ const StyledAbilityContainer = styled.div`
 
     ul {
         display: flex;
+        flex-direction: column;
         column-gap: 1.8rem;
     }
     
